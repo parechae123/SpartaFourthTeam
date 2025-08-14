@@ -53,7 +53,8 @@ public abstract class LaserBase : MonoBehaviour, IDetectActioin, ILaserCollide
 
     public void ChildLaserOff()
     {
-        SetLine(0f);
+        if(line != null)SetLine(0f);
+
         if(currCollide != null) currCollide.ChildLaserOff();
 
 
