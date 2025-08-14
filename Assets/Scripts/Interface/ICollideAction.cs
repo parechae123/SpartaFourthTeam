@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface ICollideAction
 {
-    protected Collider collider { get; set; }
+    public Collider objectCollider { get; set; }
     public void OnCollide(Collider collider);
 }
