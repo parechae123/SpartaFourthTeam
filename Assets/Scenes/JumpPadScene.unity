@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 898068743}
   - component: {fileID: 898068742}
   - component: {fileID: 898068741}
+  - component: {fileID: 898068745}
   m_Layer: 0
   m_Name: JumpPad
   m_TagString: Untagged
@@ -316,12 +317,25 @@ Transform:
   m_GameObject: {fileID: 898068740}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -7.04, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 0.5, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &898068745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898068740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04d9abcc59d4e8488af9b23a2e4722f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 10
 --- !u!1 &1568907158
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,9 +421,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568907158}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.86, y: 1.27, z: 0}
+  m_LocalScale: {x: 1, y: 1.03, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
