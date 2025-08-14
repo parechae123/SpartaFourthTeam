@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        ICollideAction collideAction = other.GetComponent<ICollideAction>();
+        if (collideAction != null)
+        {
+            collideAction.OnCollide(this.GetComponent<Collider>());
+        }
     }
 }
