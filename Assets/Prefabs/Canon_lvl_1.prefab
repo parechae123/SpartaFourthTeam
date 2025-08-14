@@ -67,6 +67,7 @@ GameObject:
   - component: {fileID: 4876658757356845799}
   - component: {fileID: 8006022694699980651}
   - component: {fileID: 4399362285185640490}
+  - component: {fileID: 7409794463309423142}
   m_Layer: 7
   m_Name: Canon_lvl_1
   m_TagString: Untagged
@@ -183,6 +184,27 @@ MonoBehaviour:
   bulletSpeed: 24
   turretAnimator: {fileID: 8006022694699980651}
   shootParam: Shoot
+--- !u!65 &7409794463309423142
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968441347472182858}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5942931, y: 0.94950676, z: 0.97381365}
+  m_Center: {x: 0, y: 0.46512163, z: 0.19476712}
 --- !u!1 &3796733190460816011
 GameObject:
   m_ObjectHideFlags: 0
