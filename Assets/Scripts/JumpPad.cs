@@ -24,6 +24,7 @@ public class JumpPad : MonoBehaviour, ICollideAction
 
         Vector3 launchDirection = new Vector3(rb.velocity.x, 0, rb.velocity.z).normalized;
 
+        // 플레이어가 정지 상태일 경우, 위쪽 방향으로만 힘을 가함
         if (launchDirection == Vector3.zero)
         {
             launchDirection = Vector3.up;
