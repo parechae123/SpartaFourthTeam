@@ -7,10 +7,11 @@ public class Player : MonoBehaviour, IDamageable
 {
     //Default player components
     IMoveable playerController;
-
+    
     //Player Info
     [Header("플레이어 상태")]
     [SerializeField] Condition[] conditions;
+    [SerializeField] public Inventory playerInventory;
     bool isDead = false;
 
     public int Health
@@ -37,6 +38,9 @@ public class Player : MonoBehaviour, IDamageable
                 healthCondition = conditions[i];
             }
         }
+        playerInventory.gameObject.SetActive(false);
+        DontDestroyOnLoad(gameObject);
+
     }
     public void OnDamageAppllied(int damage)
     {

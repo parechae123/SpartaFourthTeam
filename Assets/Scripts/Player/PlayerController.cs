@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour, IMoveable
     [SerializeField] float lookSensitivity;
     Vector2 mouseDelta;
 
+    [Header("인벤토리")]
+    bool isInventoryVisible = false;
+
 
     //Other not shown in Inspector
     [HideInInspector] Rigidbody rb;
@@ -62,6 +65,15 @@ public class PlayerController : MonoBehaviour, IMoveable
     public void OnLookInput(InputAction.CallbackContext context)
     {
         mouseDelta = context.ReadValue<Vector2>();
+    }
+
+    public void OnInventoryToggle(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            isInventoryVisible = !isInventoryVisible;
+            GetComponent<Player>().playerInventory.ActivateUI(isInventoryVisible);
+        }
     }
 
     //inputActions End
