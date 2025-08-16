@@ -7,15 +7,19 @@ public class MovingPlatform : MonoBehaviour, IMoveable
     [SerializeField] private Vector3 moveDirection = Vector3.forward;
 
     private Vector3 startPosition;
+    private Rigidbody platformBody;
 
     public float moveSpeed { get; set; }
 
     private void Awake()
     {
-        startPosition = transform.position;
+        platformBody = GetComponent<Rigidbody>();
+
+        startPosition = platformBody.position;
 
         moveSpeed = platformMoveSpeed;
     }
+
 
     private void FixedUpdate()
     {
@@ -29,17 +33,25 @@ public class MovingPlatform : MonoBehaviour, IMoveable
             moveDirection = -moveDirection;
             startPosition = transform.position;
         }
-
-        transform.Translate(movement);
+        platformBody.MovePosition(transform.position + movement);
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        IMoveable moveableObject = other.GetComponent<IMoveable>();
-
-        if (moveableObject != null)
+        Rigidbody rb = other.rigidbody;
+        if (rb != null)
         {
-            moveableObject.OnMove(moveDirection * moveSpeed * Time.fixedDeltaTime);
+            other.transform.SetParent(transform, true);
+        }
+    }
+
+
+    private void OnCollisionExit(Collision other)
+    {
+        Rigidbody rb = other.rigidbody;
+        if (rb != null)
+        {
+            other.transform.SetParent(null, true);
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
-public abstract class LaserBase : MonoBehaviour, IDetectActioin, ILaserCollide
+public abstract class LaserBase : MonoBehaviour, IDetectAction, ILaserCollide
 {
     protected LineRenderer line;
     protected LayerMask searchLayer = 0;

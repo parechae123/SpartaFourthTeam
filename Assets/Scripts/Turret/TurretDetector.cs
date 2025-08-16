@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class TurretDetector : MonoBehaviour, IDetectActioin
+public class TurretDetector : MonoBehaviour, IDetectAction
 {
     [Header("Detection")]
     [SerializeField] private Transform sightOrigin;     // 레이 시작 위치
