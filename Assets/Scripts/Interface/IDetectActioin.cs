@@ -1,6 +1,6 @@
 
 
-public interface IDetectActioin
+public interface IDetectAction
 {
     public void OnDetect();
 }

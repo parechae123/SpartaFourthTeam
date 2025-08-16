@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour, ICollideAction
     //총알 속도,데미지,지속시간 설정
     [Header("Bullet Settings")]
     [SerializeField] private float speed = 20f;
-    // [SerializeField] private int damage = 10; 나중에 데미지처리시사용
+    [SerializeField] private int damage = 10; //나중에 데미지처리시사용
     [SerializeField] private float lifeTime = 3f;
 
     [Header("Layer Settings")]
@@ -70,7 +70,9 @@ public class Bullet : MonoBehaviour, ICollideAction
         int playerLayer = LayerMask.NameToLayer("Player");
         if (other.gameObject.layer != playerLayer)
             return;
-            
+
+        other.GetComponent<Player>().OnDamageAppllied(damage);
+
         hasHit = true; //중복타격 방지
         Despawn(); //총알 풀로 반환
     }
