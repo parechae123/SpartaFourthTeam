@@ -751,7 +751,7 @@ GameObject:
   - component: {fileID: 793451889}
   - component: {fileID: 793451888}
   m_Layer: 15
-  m_Name: Ground (1)
+  m_Name: FinishGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1285,7 +1285,7 @@ GameObject:
   - component: {fileID: 1698634745}
   - component: {fileID: 1698634744}
   m_Layer: 15
-  m_Name: Ground
+  m_Name: StartGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
