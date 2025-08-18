@@ -7,6 +7,7 @@ public class JumpPad : MonoBehaviour, ICollideAction
     [SerializeField] private float jumpForce;
     public Collider objectCollider { get; set; }
 
+    /*
     private void OnTriggerEnter(Collider other)
     {
         Rigidbody rb = other.GetComponent<Rigidbody>();
@@ -16,6 +17,18 @@ public class JumpPad : MonoBehaviour, ICollideAction
             OnCollide(other);
         }
     }
+    */
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            OnCollide(collision.collider);
+        }
+    }
+
     public void OnCollide(Collider other)
     {
         Rigidbody rb = other.GetComponent<Rigidbody>();
@@ -34,7 +47,7 @@ public class JumpPad : MonoBehaviour, ICollideAction
             launchDirection = (launchDirection + Vector3.up * 0.5f).normalized;
         }
 
-        rb.velocity = Vector3.zero;
+        //rb.velocity = Vector3.zero;
         rb.AddForce(launchDirection * jumpForce, ForceMode.Impulse);
     }
 }

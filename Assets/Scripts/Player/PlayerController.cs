@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour, IMoveable
 
     //Other not shown in Inspector
     [HideInInspector] Rigidbody rb;
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
         if (rb == null)
@@ -59,7 +59,10 @@ public class PlayerController : MonoBehaviour, IMoveable
     public void OnJumpInput(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started && isGrounded())
+        {
+            Debug.Log("Jump");
             rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+        }
     }
 
     public void OnLookInput(InputAction.CallbackContext context)
@@ -81,19 +84,19 @@ public class PlayerController : MonoBehaviour, IMoveable
     //Move
     public void OnMove(Vector3 movement)
     {
-        Vector3 curdir = transform.forward * currentMoveInput.y + transform.right * currentMoveInput.x;
+        Vector3 curdir = transform.forward * movement.y + transform.right * movement.x;
         curdir = curdir * moveSpeed * Time.fixedDeltaTime;
-        rb.MovePosition(transform.position + curdir);
+        rb.MovePosition(rb.position + curdir);
     }
     //Check if Player is Grounded
     public bool isGrounded()
     {
         Ray[] rays = new Ray[4]
         {
-            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
-            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
-            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.01f), Vector3.down),
-            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.01f), Vector3.down)
+            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.05f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.05f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.05f), Vector3.down),
+            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.05f), Vector3.down)
         };
 
         for (int i = 0; i < rays.Length; i++)

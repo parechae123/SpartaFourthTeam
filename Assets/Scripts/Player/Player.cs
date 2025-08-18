@@ -39,8 +39,6 @@ public class Player : MonoBehaviour, IDamageable
             }
         }
         playerInventory.gameObject.SetActive(false);
-        DontDestroyOnLoad(gameObject);
-
     }
     public void OnDamageAppllied(int damage)
     {
@@ -48,6 +46,7 @@ public class Player : MonoBehaviour, IDamageable
             return;
         if (healthCondition == null)
             throw new System.Exception("Player doesn't have Health Condition");
+        Debug.Log(Health);
         if (healthCondition.SubtractCondition(damage))
             OnDead();
     }
