@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoxObject : MonoBehaviour , IGrabable,ICollideAction
+public class BoxObject : MonoBehaviour , IGrabable
 {
     [SerializeField] Rigidbody rb;
     Collider col;
@@ -11,10 +11,23 @@ public class BoxObject : MonoBehaviour , IGrabable,ICollideAction
     {
         col = GetComponent<Collider>();
     }
-    public void OnCollide(Collider collider)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        /*collider.GetComponents<PressurePlate>().SetValue*/
-        //
+        PresurePlate(collision.collider,true);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        PresurePlate(collision.collider,false);
+    }
+
+    public void PresurePlate(Collider collider,bool isEnter)
+    {
+        if(collider.TryGetComponent<PressurePlate>(out PressurePlate result))
+        {
+            result.ActivePlate(isEnter);
+        }
     }
 
     public void OnGrabEnter()

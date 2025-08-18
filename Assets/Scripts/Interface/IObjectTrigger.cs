@@ -7,4 +7,8 @@ using System.Threading.Tasks;
 interface IObjectTrigger
 {
     bool IsActivated { get; }
+    ValueChangeFunc OnValueChanged { get; set; }
+    
 }
+public delegate void ValueChangeFunc(bool onOff);
+
