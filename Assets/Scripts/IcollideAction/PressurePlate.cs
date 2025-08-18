@@ -1,15 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PressurePlate : MonoBehaviour
+public class PressurePlate : MonoBehaviour, IObjectTrigger
 {
-    private void OnTriggerEnter(Collider other)
+    [SerializeField]private bool isActivated;
+    public bool IsActivated { get { return isActivated; } }
+    public ValueChangeFunc OnValueChanged { get; set; }
+    public void ActivePlate(bool isPress)
     {
-        ICollideAction collideAction = other.GetComponent<ICollideAction>();
-        if (collideAction != null)
-        {
-            collideAction.OnCollide(this.GetComponent<Collider>());
-        }
+        if (IsActivated == isPress) return;
+
+        isActivated = isPress;
+        OnValueChanged?.Invoke(isPress);
     }
 }
