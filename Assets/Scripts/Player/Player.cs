@@ -11,7 +11,6 @@ public class Player : MonoBehaviour, IDamageable
     //Player Info
     [Header("플레이어 상태")]
     [SerializeField] Condition[] conditions;
-    [SerializeField] public Inventory playerInventory;
     bool isDead = false;
 
     public int Health
@@ -23,6 +22,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Awake()
     {
+        PlayerManager.Instance.player = this;
         playerController = GetComponent<IMoveable>();
     }
 
@@ -38,7 +38,6 @@ public class Player : MonoBehaviour, IDamageable
                 healthCondition = conditions[i];
             }
         }
-        playerInventory.gameObject.SetActive(false);
     }
     public void OnDamageAppllied(int damage)
     {
@@ -46,7 +45,6 @@ public class Player : MonoBehaviour, IDamageable
             return;
         if (healthCondition == null)
             throw new System.Exception("Player doesn't have Health Condition");
-        Debug.Log(Health);
         if (healthCondition.SubtractCondition(damage))
             OnDead();
     }
@@ -72,7 +70,6 @@ public class Player : MonoBehaviour, IDamageable
     private void OnDead()
     {
         isDead = true;
-        Debug.Log("Player is Dead");
         //죽었을 시 추가 처리
     }
 }
