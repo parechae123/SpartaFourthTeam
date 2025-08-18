@@ -18,18 +18,27 @@ public class LaserReflecter : LaserBase,IGrabable
     {
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, float.PositiveInfinity, searchLayer))
         {
-            SetLine(hit.distance);
+            OnLaserRendering(hit.distance);
             if (TempLaserDict.GetInstance.GetLaserCollide.ContainsKey(hit.collider))
             {
                 if (currCollide != TempLaserDict.GetInstance.GetLaserCollide[hit.collider]) currCollide = TempLaserDict.GetInstance.GetLaserCollide[hit.collider];
                 
                 if (!currCollide.IsInfiniteReflextion(this))
                 {
+                    
                     TempLaserDict.GetInstance.GetLaserCollide[hit.collider].OnLaserCollide(true);
                 }
                 else
                 {
-                    SetLine(hit.distance);
+                    currCollide.OnLaserRendering(hit.distance);
+                }
+            }
+            else
+            {
+                if (currCollide != null)
+                {
+                    currCollide.OnLaserCollide(false);
+                    currCollide = null;
                 }
             }
         }
@@ -40,7 +49,7 @@ public class LaserReflecter : LaserBase,IGrabable
                 currCollide.OnLaserCollide(false);
                 currCollide = null;
             }
-            SetLine(3000f);
+            OnLaserRendering(3000f);
         }
     }
     public override void OnLaserCollide(bool isLaserContact)
@@ -53,6 +62,7 @@ public class LaserReflecter : LaserBase,IGrabable
     }
     public override bool IsInfiniteReflextion(ILaserCollide laser)
     {
+        if (laser == null) return true;
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, float.PositiveInfinity, searchLayer))
         {
             TempLaserDict.GetInstance.GetLaserCollide.TryGetValue(hit.collider, out ILaserCollide compare);

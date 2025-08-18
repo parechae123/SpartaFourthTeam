@@ -11,23 +11,14 @@ public abstract class LaserBase : MonoBehaviour, IDetectAction, ILaserCollide
     void Awake()
     {
         if (line == null) line = GetComponent<LineRenderer>();
-        searchLayer += 1 << 10;
+        searchLayer += 1 << 13;
         TempLaserDict.GetInstance.RegistLaserOBJ(GetComponent<Collider>(), this);
-    }
-    protected void SetLine(float dist)
-    {
-        if (dist == 0f) line.enabled = false;
-        else
-        {
-            line.enabled = true;
-            line.SetPositions(new Vector3[2] { transform.position, transform.position+(transform.forward * dist) });
-        }
     }
     public virtual void OnDetect()
     {
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, float.PositiveInfinity, searchLayer))
         {
-            SetLine(hit.distance);
+            OnLaserRendering(hit.distance);
             if (TempLaserDict.GetInstance.GetLaserCollide.ContainsKey(hit.collider))
             {
                 if(currCollide != TempLaserDict.GetInstance.GetLaserCollide[hit.collider]) currCollide = TempLaserDict.GetInstance.GetLaserCollide[hit.collider];
@@ -41,7 +32,7 @@ public abstract class LaserBase : MonoBehaviour, IDetectAction, ILaserCollide
                 currCollide.OnLaserCollide(false);
                 currCollide = null;
             }
-            SetLine(3000f);
+            OnLaserRendering(3000f);
         }
     }
     public abstract void OnLaserCollide(bool isLaserContact);
@@ -53,10 +44,19 @@ public abstract class LaserBase : MonoBehaviour, IDetectAction, ILaserCollide
 
     public void ChildLaserOff()
     {
-        if(line != null)SetLine(0f);
+        if(line != null)OnLaserRendering(0f);
 
         if(currCollide != null) currCollide.ChildLaserOff();
 
 
+    }
+    public void OnLaserRendering(float dist)
+    {
+        if (dist == 0f) line.enabled = false;
+        else
+        {
+            line.enabled = true;
+            line.SetPositions(new Vector3[2] { transform.position, transform.position + (transform.forward * dist) });
+        }
     }
 }
