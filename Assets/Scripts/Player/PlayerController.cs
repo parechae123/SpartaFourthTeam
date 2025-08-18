@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IMoveable
 {
@@ -23,22 +24,78 @@ public class PlayerController : MonoBehaviour, IMoveable
     [SerializeField] float lookSensitivity;
     Vector2 mouseDelta;
 
-    [Header("인벤토리")]
-    bool isInventoryVisible = false;
+    [Header("Grab")]
+    [SerializeField] Player player;
+    [SerializeField] float grabDistance;
+    const float UPDATEDELAY = 0.05f;
+    float lastUpdate = 0.0f;
+    const float DETECTDISTANCE = 1.0f;
+    Camera cam;
+
+    [Header("CrossHair")]
+    [SerializeField] Transform UIParent;
+    [SerializeField] Sprite crosshairImg;
+    RectTransform crosshair;
+    Vector3 midPos;
+
+    [Header("Interactables")]
+    bool isGrab = false;
+    [SerializeField] LayerMask itemLayer;
+    IGrabable currentGrabable = null;
 
 
     //Other not shown in Inspector
     [HideInInspector] Rigidbody rb;
     void Awake()
     {
+        cam = Camera.main;
         rb = GetComponent<Rigidbody>();
         if (rb == null)
             throw new System.Exception("Player doesn't have rigidbody");
+        crosshair = new GameObject("CrossHairUI").AddComponent<RectTransform>();
+        crosshair.transform.SetParent(UIParent);
+        crosshair.gameObject.AddComponent<Image>().sprite = crosshairImg;
+        crosshair.gameObject.GetComponent<Image>().color = Color.red;
+        crosshair.localScale = Vector2.one * 0.2f;
+        crosshair.anchoredPosition = Vector3.zero;
+        midPos = new Vector3(Screen.width / 2, Screen.height / 2);
+        player = this.GetComponent<Player>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void FixedUpdate()
     {
         OnMove(currentMoveInput);
+    }
+
+    private void Update()
+    {
+        if (Time.time - lastUpdate < UPDATEDELAY)
+            return;
+        if (isGrab)
+        {
+            return;
+        }
+        lastUpdate = Time.time;
+        Ray ray = cam.ScreenPointToRay(midPos);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, DETECTDISTANCE, itemLayer))
+        {
+            if (hit.collider.gameObject.TryGetComponent<IGrabable>(out IGrabable grabtarget))
+            {
+                if (grabtarget != currentGrabable)
+                {
+                    currentGrabable = grabtarget;
+                }
+            }
+            else
+                currentGrabable = null;
+        }
+        else
+        {
+            currentGrabable = null;
+        }
     }
 
     private void LateUpdate()
@@ -70,12 +127,26 @@ public class PlayerController : MonoBehaviour, IMoveable
         mouseDelta = context.ReadValue<Vector2>();
     }
 
-    public void OnInventoryToggle(InputAction.CallbackContext context)
+    public void OnGrabInput(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
         {
-            isInventoryVisible = !isInventoryVisible;
-            GetComponent<Player>().playerInventory.ActivateUI(isInventoryVisible);
+            //If current Interactable is not null, Grab
+            if (currentGrabable != null && !isGrab)
+            {
+                isGrab = true;
+                currentGrabable.OnGrabEnter();
+            }
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            if (isGrab)
+            {
+                //End Player Grab mode
+                currentGrabable.OnGrabExit();
+                currentGrabable = null;
+                isGrab = false;
+            }
         }
     }
 

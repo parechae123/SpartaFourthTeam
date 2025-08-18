@@ -33,9 +33,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "InventoryToggle",
+                    "name": "Grab",
                     "type": "Button",
-                    "id": "3579c445-dc19-4892-9d46-7299925d834b",
+                    "id": "d2a5367a-d663-430a-a887-5656c1f195e5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -122,12 +122,12 @@
                 },
                 {
                     "name": "",
-                    "id": "ac0d0e8f-1a4e-465c-b4c8-1e3028c203f6",
-                    "path": "<Keyboard>/tab",
+                    "id": "44b69dfb-0261-41d4-8bd4-f6dfa10aaac2",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "InventoryToggle",
+                    "action": "Grab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
