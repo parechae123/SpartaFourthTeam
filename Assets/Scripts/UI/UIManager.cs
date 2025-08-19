@@ -8,15 +8,16 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
-    // refs
     Button _startBtn, _exitBtn, _stageMenuBtn, _closeBtn;
     Slider _soundSlider;
     GameObject _panelStage;
     Button[] _stageButtons;
     string[] _stageSceneNames;   // 각 스테이지의 씬 이름
+    private SlideEffect transition;
 
     void Awake()
     {
+        if (transition == null) transition = FindObjectOfType<SlideEffect>();
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
         DontDestroyOnLoad(gameObject);
@@ -86,12 +87,20 @@ public class UIManager : MonoBehaviour
 
     void OnStageMenuClicked()
     {
-        if (_panelStage) _panelStage.SetActive(true);
+        if (_panelStage && transition)
+        {
+            var rt = _panelStage.GetComponent<RectTransform>();
+            transition.Slide(rt, SlideEffect.Dir.Right, 0.6f);
+        }
     }
 
     void OnCloseClicked()
     {
-        if (_panelStage) _panelStage.SetActive(false);
+        if (_panelStage && transition)
+        {
+            var rt = _panelStage.GetComponent<RectTransform>();
+            transition.Slide(rt, SlideEffect.Dir.Left, 0.6f, show: false);
+        }
     }
 
     void OnStageClicked(int index)
