@@ -28,6 +28,8 @@ public class Portal : MonoBehaviour
     {
         if (!otherPortal.isPortalActive || !isPortalActive)
             return;
+        if (!collider.TryGetComponent<Rigidbody>(out Rigidbody rigid) || rigid.isKinematic)
+            return;
         otherPortal.isPortalActive = false;
         collider.transform.position = otherPortal.transform.position + otherPortal.transform.right;
         collider.transform.rotation = Quaternion.Euler(
