@@ -17,29 +17,7 @@ public abstract class LaserBase : MonoBehaviour, IDetectAction, ILaserCollide
     }
     public virtual void OnDetect()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, float.PositiveInfinity, searchLayer))
-        {
-            OnLaserRendering(hit.distance);
-            if (TempLaserDict.GetInstance.GetLaserCollide.ContainsKey(hit.collider))
-            {
-                if (currCollide != null && currCollide != TempLaserDict.GetInstance.GetLaserCollide[hit.collider])
-                {
-                    currCollide.ChildLaserOff();
-                }
-                currCollide = TempLaserDict.GetInstance.GetLaserCollide[hit.collider];
-
-                TempLaserDict.GetInstance.GetLaserCollide[hit.collider].OnLaserCollide(true);
-            }
-        }
-        else
-        {
-            if (currCollide != null)
-            {
-                currCollide.OnLaserCollide(false);
-                currCollide = null;
-            }
-            OnLaserRendering(3000f);
-        }
+        
     }
     public abstract void OnLaserCollide(bool isLaserContact);
 
