@@ -861,6 +861,7 @@ GameObject:
   - component: {fileID: 455957659}
   - component: {fileID: 455957658}
   - component: {fileID: 455957657}
+  - component: {fileID: 455957660}
   m_Layer: 5
   m_Name: StartBtn
   m_TagString: Untagged
@@ -910,7 +911,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.08235294, g: 0.39607844, b: 0.7529412, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -982,6 +983,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455957655}
   m_CullTransparentMesh: 1
+--- !u!114 &455957660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455957655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd0a751356a0c043b4e75c4af4f9d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  normalColor: {r: 0, g: 0.9, b: 1, a: 1}
+  hoverColor: {r: 0.12, g: 0.55, b: 1, a: 1}
+  hoverScale: 1.05
+  duration: 0.12
 --- !u!1 &511978864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,6 +1220,7 @@ GameObject:
   - component: {fileID: 776055789}
   - component: {fileID: 776055788}
   - component: {fileID: 776055787}
+  - component: {fileID: 776055790}
   m_Layer: 5
   m_Name: StageBtn3
   m_TagString: Untagged
@@ -1251,7 +1270,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.7019608, g: 0.53333336, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -1323,6 +1342,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776055785}
   m_CullTransparentMesh: 1
+--- !u!114 &776055790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776055785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd0a751356a0c043b4e75c4af4f9d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  normalColor: {r: 0, g: 0.9, b: 1, a: 1}
+  hoverColor: {r: 0.12, g: 0.55, b: 1, a: 1}
+  hoverScale: 1.05
+  duration: 0.12
 --- !u!1 &953609393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,6 +1446,7 @@ GameObject:
   - component: {fileID: 1024212611}
   - component: {fileID: 1024212610}
   - component: {fileID: 1024212609}
+  - component: {fileID: 1024212612}
   m_Layer: 5
   m_Name: StageBtn1
   m_TagString: Untagged
@@ -1459,7 +1496,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.7019608, g: 0.53333336, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -1531,6 +1568,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024212607}
   m_CullTransparentMesh: 1
+--- !u!114 &1024212612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024212607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd0a751356a0c043b4e75c4af4f9d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  normalColor: {r: 0, g: 0.9, b: 1, a: 1}
+  hoverColor: {r: 0.12, g: 0.55, b: 1, a: 1}
+  hoverScale: 1.05
+  duration: 0.12
 --- !u!1 &1035144066
 GameObject:
   m_ObjectHideFlags: 0
@@ -2565,6 +2619,7 @@ GameObject:
   - component: {fileID: 1601300473}
   - component: {fileID: 1601300472}
   - component: {fileID: 1601300471}
+  - component: {fileID: 1601300474}
   m_Layer: 5
   m_Name: StageBtn2
   m_TagString: Untagged
@@ -2614,7 +2669,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.7019608, g: 0.53333336, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -2686,6 +2741,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601300469}
   m_CullTransparentMesh: 1
+--- !u!114 &1601300474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601300469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd0a751356a0c043b4e75c4af4f9d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  normalColor: {r: 0, g: 0.9, b: 1, a: 1}
+  hoverColor: {r: 0.12, g: 0.55, b: 1, a: 1}
+  hoverScale: 1.05
+  duration: 0.12
 --- !u!1 &1652642681
 GameObject:
   m_ObjectHideFlags: 0
@@ -2980,6 +3052,7 @@ GameObject:
   - component: {fileID: 1774059496}
   - component: {fileID: 1774059495}
   - component: {fileID: 1774059494}
+  - component: {fileID: 1774059497}
   m_Layer: 5
   m_Name: ExitBtn
   m_TagString: Untagged
@@ -3029,7 +3102,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.08235294, g: 0.39607844, b: 0.7529412, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -3089,6 +3162,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774059492}
   m_CullTransparentMesh: 1
+--- !u!114 &1774059497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774059492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd0a751356a0c043b4e75c4af4f9d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  normalColor: {r: 0, g: 0.9, b: 1, a: 1}
+  hoverColor: {r: 0.12, g: 0.55, b: 1, a: 1}
+  hoverScale: 1.05
+  duration: 0.12
 --- !u!1 &1871881503
 GameObject:
   m_ObjectHideFlags: 0
@@ -3101,6 +3191,7 @@ GameObject:
   - component: {fileID: 1871881507}
   - component: {fileID: 1871881506}
   - component: {fileID: 1871881505}
+  - component: {fileID: 1871881508}
   m_Layer: 5
   m_Name: StageBtn
   m_TagString: Untagged
@@ -3150,7 +3241,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.08235294, g: 0.39607844, b: 0.7529412, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -3222,6 +3313,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871881503}
   m_CullTransparentMesh: 1
+--- !u!114 &1871881508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871881503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd0a751356a0c043b4e75c4af4f9d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  normalColor: {r: 0, g: 0.9, b: 1, a: 1}
+  hoverColor: {r: 0.12, g: 0.55, b: 1, a: 1}
+  hoverScale: 1.05
+  duration: 0.12
 --- !u!1 &1894892187
 GameObject:
   m_ObjectHideFlags: 0
