@@ -18,5 +18,8 @@ public class LaserOut : LaserBase
     {
         
     }
-
+    public override bool SearchDuplicatedSign(ILaserCollide next)
+    {
+        return false;
+    }
 }

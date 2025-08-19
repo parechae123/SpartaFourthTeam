@@ -5,6 +5,7 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
     [SerializeField] Portal otherPortal;
+    public Portal GetOtherPortal { get { return otherPortal; } }
     public bool isPortalActive;
     [HideInInspector]public Collider portalCollider;
 
