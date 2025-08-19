@@ -23,7 +23,7 @@ public class PressurePlate : MonoBehaviour, IObjectTrigger
 
     public void PresurePlate(Collider collider, bool isEnter)
     {
-        if ((layers & (1 << collider.gameObject.layer)) == 0)
+        if ((layers & (1 << collider.gameObject.layer)) != 0)
         {
             ActivePlate(isEnter);
         }
