@@ -540,7 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformMoveSpeed: 3
   travelDistance: 5
-  moveDirection: {x: 0, y: 0, z: 1}
+  moveDirection: {x: 0, y: 0, z: 2}
 --- !u!1 &225815088
 GameObject:
   m_ObjectHideFlags: 0
