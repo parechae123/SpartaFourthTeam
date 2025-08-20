@@ -305,7 +305,7 @@ MonoBehaviour:
   isActivated: 0
   layers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
 --- !u!65 &189080328
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -321,7 +321,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -903,9 +903,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd64265e0f798da429566c2db55e3a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openPosition: {x: 0, y: 5, z: 0}
-  closedPosition: {x: 8, y: 0.15, z: 22}
-  openSpeed: 1
+  openPosition: {x: 8, y: 5, z: 22}
+  closedPosition: {x: 8, y: 0, z: 22}
+  openSpeed: 3
   triggerGameObjects:
   - {fileID: 189080326}
 --- !u!65 &398038036
@@ -988,7 +988,7 @@ Transform:
   m_GameObject: {fileID: 398038034}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 0.15, z: 22}
+  m_LocalPosition: {x: 8, y: 0, z: 22}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3302,6 +3302,7 @@ SceneRoots:
   - {fileID: 688054027}
   - {fileID: 1410868587}
   - {fileID: 398038039}
+  - {fileID: 189080331}
   - {fileID: 898068744}
   - {fileID: 731106497}
   - {fileID: 819805476}
@@ -3309,7 +3310,6 @@ SceneRoots:
   - {fileID: 2044357343}
   - {fileID: 1566317208}
   - {fileID: 877164765}
-  - {fileID: 189080331}
   - {fileID: 1820322528}
   - {fileID: 1717810111}
   - {fileID: 606950066}
