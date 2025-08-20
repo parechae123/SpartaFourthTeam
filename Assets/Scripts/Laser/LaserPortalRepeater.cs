@@ -26,7 +26,7 @@ public class LaserPortalRepeater : LaserBase
                     currCollide.OnLaserCollide(false);
                 }
                 currCollide = TempLaserDict.GetInstance.GetLaserCollide[hit.collider];
-                if (/*!currCollide.IsInfiniteReflextion(this) &&*/ !currCollide.SearchDuplicatedSign(this))
+                if (/*!currCollide.IsInfiniteReflextion(this) &&*/ !currCollide.SearchDuplicatedSign(this) && currCollide != otherPortal)
                 {
                     currCollide.OnLaserCollide(true);
                 }
@@ -50,10 +50,7 @@ public class LaserPortalRepeater : LaserBase
     {
         if (isLaserContact && !SearchDuplicatedSign(this))
         {
-            if (currCollide != null)
-            {
-                if (SearchDuplicatedSign(this)) return;
-            }
+            if (isRepeating) return;
             otherPortal.OnDetect();
             currCollide = otherPortal;
         }
@@ -62,11 +59,13 @@ public class LaserPortalRepeater : LaserBase
             ChildLaserOff();
             if (!isRepeating)
             {
-                otherPortal.OnLaserCollide(isLaserContact);
+                ChildLaserOff();
+                currCollide = null;
+                otherPortal.OnLaserCollide(false);//혹시 클로저이슈?..
                 return;
             }
             otherPortal.ChildLaserOff();
-            currCollide = null;
+            otherPortal.currCollide = null;
             isRepeating = false;
         }
     }
