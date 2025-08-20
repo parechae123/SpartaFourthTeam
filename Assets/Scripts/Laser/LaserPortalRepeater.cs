@@ -5,17 +5,18 @@ using UnityEngine;
 public class LaserPortalRepeater : LaserBase
 {
     LaserPortalRepeater otherPortal;
+    Transform laserPivot;
     bool isRepeating = false;
     protected override void Awake()
     {
-        base.Awake();
-        otherPortal = transform.GetComponent<Portal>().GetOtherPortal.transform.GetComponent<LaserPortalRepeater>();
-        
+        if (line == null) line = GetComponent<LineRenderer>();
+        searchLayer += 1 << LayerMask.NameToLayer("LaserObjects");
+        StartCoroutine(Setting());
     }
     public override void OnDetect()
     {
         isRepeating = true;
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, float.PositiveInfinity, searchLayer))
+        if (Physics.Raycast(laserPivot.position, laserPivot.up, out RaycastHit hit, float.PositiveInfinity, searchLayer))
         {
             OnLaserRendering(hit.distance);
             if (TempLaserDict.GetInstance.GetLaserCollide.ContainsKey(hit.collider))
@@ -26,7 +27,7 @@ public class LaserPortalRepeater : LaserBase
                     currCollide.OnLaserCollide(false);
                 }
                 currCollide = TempLaserDict.GetInstance.GetLaserCollide[hit.collider];
-                if (/*!currCollide.IsInfiniteReflextion(this) &&*/ !currCollide.SearchDuplicatedSign(this))
+                if (/*!currCollide.IsInfiniteReflextion(this) &&*/ !currCollide.SearchDuplicatedSign(this) && currCollide != otherPortal)
                 {
                     currCollide.OnLaserCollide(true);
                 }
@@ -46,14 +47,23 @@ public class LaserPortalRepeater : LaserBase
         }
         OnLaserRendering(3000f);
     }
+
+
+    public override void OnLaserRendering(float dist)
+    {
+        if (dist == 0f) line.enabled = false;
+        else
+        {
+            line.enabled = true;
+            line.SetPositions(new Vector3[2] { laserPivot.position, laserPivot.position + (laserPivot.up * dist) });
+        }
+    }
+
     public override void OnLaserCollide(bool isLaserContact)
     {
         if (isLaserContact && !SearchDuplicatedSign(this))
         {
-            if (currCollide != null)
-            {
-                if (SearchDuplicatedSign(this)) return;
-            }
+            if (isRepeating) return;
             otherPortal.OnDetect();
             currCollide = otherPortal;
         }
@@ -62,13 +72,24 @@ public class LaserPortalRepeater : LaserBase
             ChildLaserOff();
             if (!isRepeating)
             {
-                otherPortal.OnLaserCollide(isLaserContact);
+                ChildLaserOff();
+                currCollide = null;
+                otherPortal.OnLaserCollide(false);//혹시 클로저이슈?..
                 return;
             }
             otherPortal.ChildLaserOff();
-            currCollide = null;
+            otherPortal.currCollide = null;
             isRepeating = false;
         }
     }
+    IEnumerator Setting()
+    {
+        Portal portal = transform.GetComponent<Portal>();
+        yield return new WaitUntil(() => portal.GetOtherPortal != null);
 
+        otherPortal = transform.GetComponent<Portal>().GetOtherPortal.transform.GetComponent<LaserPortalRepeater>();
+        TempLaserDict.GetInstance.RegistLaserOBJ(transform.GetChild(0).GetComponent<Collider>(), this);
+        laserPivot = transform.GetChild(1);
+        gameObject.SetActive(false);
+    }
 }

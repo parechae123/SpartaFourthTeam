@@ -28,7 +28,7 @@ public abstract class LaserBase : MonoBehaviour, IDetectAction, ILaserCollide
         if(currCollide != null && currCollide != this) currCollide.ChildLaserOff();
         currCollide = null;
     }
-    public void OnLaserRendering(float dist)
+    public virtual void OnLaserRendering(float dist)
     {
         if (dist == 0f) line.enabled = false;
         else

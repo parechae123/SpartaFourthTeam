@@ -10,6 +10,7 @@ public class StageClear : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene(ClearScene);
         }
     }
