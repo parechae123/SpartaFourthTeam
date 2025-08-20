@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour, IMoveable
     [SerializeField] float minLook;
     [SerializeField] float maxLook;
     float cameraXRotation;
+    public float CameraXRotation { get { return cameraXRotation; } }
     [SerializeField] float lookSensitivity;
     Vector2 mouseDelta;
 
@@ -43,6 +44,11 @@ public class PlayerController : MonoBehaviour, IMoveable
     [SerializeField] LayerMask itemLayer;
     IGrabable currentGrabable = null;
 
+    [Header("PortalControl")]
+    [SerializeField] Portal[] portals;
+    [SerializeField] Transform portalsParent;
+    const float PORTALMAXDISTANCE = 5.0f;
+
 
     //Other not shown in Inspector
     [HideInInspector] Rigidbody rb;
@@ -61,6 +67,19 @@ public class PlayerController : MonoBehaviour, IMoveable
         midPos = new Vector3(Screen.width / 2, Screen.height / 2);
         player = this.GetComponent<Player>();
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Start()
+    {
+        if (portals.Length != 2)
+            throw new System.Exception("Portals quantity must be 2");
+        for (int i = 0; i < portals.Length; i++)
+        {
+            portals[i] = Instantiate(portals[i], portalsParent);
+            portals[i].gameObject.SetActive(false);
+        }
+        portals[0].SetOtherPortal = portals[1];
+        portals[1].SetOtherPortal = portals[0];
     }
 
     private void FixedUpdate()
@@ -150,6 +169,20 @@ public class PlayerController : MonoBehaviour, IMoveable
         }
     }
 
+    public void OnPortalOneAction(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+            PortalAction(0);
+    }
+
+    public void OnPortalTwoAction(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+            PortalAction(1);
+    }
+
+
+
     //inputActions End
 
     //Move
@@ -185,5 +218,19 @@ public class PlayerController : MonoBehaviour, IMoveable
         cameraContainer.localEulerAngles = new Vector3(-cameraXRotation, 0, 0);
 
         transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+    }
+
+    //Shoot Portal At position
+    public void PortalAction(int portalnumber)
+    {
+        if (Physics.Raycast(transform.position + Vector3.up * 2, 
+            transform.forward + Vector3.up * (cameraXRotation * Mathf.Deg2Rad),
+            out RaycastHit hit, PORTALMAXDISTANCE, groundLayerMask))
+        {
+            if (hit.transform.TryGetComponent<PortalWall>(out PortalWall portalwall))
+            {
+                portalwall.TryPlacePortal(portals[portalnumber], hit);
+            }
+        }
     }
 }
