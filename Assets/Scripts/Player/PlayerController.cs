@@ -50,6 +50,9 @@ public class PlayerController : MonoBehaviour, IMoveable
     [SerializeField] Transform portalsParent;
     const float PORTALMAXDISTANCE = 10.0f;
 
+    [Header("Respawn")]
+    Vector3 respawnPoint;
+    const float MINHEIGHT = -15.0f;
 
     //Other not shown in Inspector
     [HideInInspector] Rigidbody rb;
@@ -81,6 +84,7 @@ public class PlayerController : MonoBehaviour, IMoveable
         }
         portals[0].SetOtherPortal = portals[1];
         portals[1].SetOtherPortal = portals[0];
+        respawnPoint = transform.position;
     }
 
     private void FixedUpdate()
@@ -88,6 +92,11 @@ public class PlayerController : MonoBehaviour, IMoveable
         OnMove(currentMoveInput);
         if (rb.velocity.magnitude > MAXSPEED)
             rb.velocity = rb.velocity.normalized * MAXSPEED;
+        if (transform.position.y < MINHEIGHT)
+        {
+            transform.position = respawnPoint;
+            rb.velocity = Vector3.zero;
+        }
     }
 
     private void Update()
