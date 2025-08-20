@@ -5,17 +5,18 @@ using UnityEngine;
 public class LaserPortalRepeater : LaserBase
 {
     LaserPortalRepeater otherPortal;
+    Transform laserPivot;
     bool isRepeating = false;
     protected override void Awake()
     {
-        base.Awake();
-        otherPortal = transform.GetComponent<Portal>().GetOtherPortal.transform.GetComponent<LaserPortalRepeater>();
-        
+        if (line == null) line = GetComponent<LineRenderer>();
+        searchLayer += 1 << LayerMask.NameToLayer("LaserObjects");
+        StartCoroutine(Setting());
     }
     public override void OnDetect()
     {
         isRepeating = true;
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, float.PositiveInfinity, searchLayer))
+        if (Physics.Raycast(laserPivot.position, laserPivot.up, out RaycastHit hit, float.PositiveInfinity, searchLayer))
         {
             OnLaserRendering(hit.distance);
             if (TempLaserDict.GetInstance.GetLaserCollide.ContainsKey(hit.collider))
@@ -46,6 +47,18 @@ public class LaserPortalRepeater : LaserBase
         }
         OnLaserRendering(3000f);
     }
+
+
+    public override void OnLaserRendering(float dist)
+    {
+        if (dist == 0f) line.enabled = false;
+        else
+        {
+            line.enabled = true;
+            line.SetPositions(new Vector3[2] { laserPivot.position, laserPivot.position + (laserPivot.up * dist) });
+        }
+    }
+
     public override void OnLaserCollide(bool isLaserContact)
     {
         if (isLaserContact && !SearchDuplicatedSign(this))
@@ -69,5 +82,14 @@ public class LaserPortalRepeater : LaserBase
             isRepeating = false;
         }
     }
+    IEnumerator Setting()
+    {
+        Portal portal = transform.GetComponent<Portal>();
+        yield return new WaitUntil(() => portal.GetOtherPortal != null);
 
+        otherPortal = transform.GetComponent<Portal>().GetOtherPortal.transform.GetComponent<LaserPortalRepeater>();
+        TempLaserDict.GetInstance.RegistLaserOBJ(transform.GetChild(0).GetComponent<Collider>(), this);
+        laserPivot = transform.GetChild(1);
+        gameObject.SetActive(false);
+    }
 }
