@@ -11,7 +11,7 @@ public abstract class LaserBase : MonoBehaviour, IDetectAction, ILaserCollide
     void Awake()
     {
         if (line == null) line = GetComponent<LineRenderer>();
-        searchLayer += 1 << 13;
+        searchLayer += 1 << LayerMask.NameToLayer("LaserObjects");
         TempLaserDict.GetInstance.RegistLaserOBJ(GetComponent<Collider>(), this);
     }
     public virtual void OnDetect()
@@ -21,7 +21,12 @@ public abstract class LaserBase : MonoBehaviour, IDetectAction, ILaserCollide
             OnLaserRendering(hit.distance);
             if (TempLaserDict.GetInstance.GetLaserCollide.ContainsKey(hit.collider))
             {
-                if(currCollide != TempLaserDict.GetInstance.GetLaserCollide[hit.collider]) currCollide = TempLaserDict.GetInstance.GetLaserCollide[hit.collider];
+                if (currCollide != null && currCollide != TempLaserDict.GetInstance.GetLaserCollide[hit.collider])
+                {
+                    currCollide.ChildLaserOff();
+                }
+                currCollide = TempLaserDict.GetInstance.GetLaserCollide[hit.collider];
+
                 TempLaserDict.GetInstance.GetLaserCollide[hit.collider].OnLaserCollide(true);
             }
         }
@@ -46,7 +51,7 @@ public abstract class LaserBase : MonoBehaviour, IDetectAction, ILaserCollide
     {
         if(line != null)OnLaserRendering(0f);
 
-        if(currCollide != null) currCollide.ChildLaserOff();
+        if(currCollide != null && currCollide != this) currCollide.ChildLaserOff();
 
 
     }

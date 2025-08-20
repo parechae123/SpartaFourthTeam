@@ -21,11 +21,16 @@ public class LaserReflecter : LaserBase,IGrabable
             OnLaserRendering(hit.distance);
             if (TempLaserDict.GetInstance.GetLaserCollide.ContainsKey(hit.collider))
             {
-                if (currCollide != TempLaserDict.GetInstance.GetLaserCollide[hit.collider]) currCollide = TempLaserDict.GetInstance.GetLaserCollide[hit.collider];
-                
+                if (currCollide != null && currCollide != TempLaserDict.GetInstance.GetLaserCollide[hit.collider])
+                {
+                    currCollide.ChildLaserOff();
+                }
+
+                currCollide = TempLaserDict.GetInstance.GetLaserCollide[hit.collider];
+
                 if (!currCollide.IsInfiniteReflextion(this))
                 {
-                    
+
                     TempLaserDict.GetInstance.GetLaserCollide[hit.collider].OnLaserCollide(true);
                 }
                 else
@@ -33,24 +38,15 @@ public class LaserReflecter : LaserBase,IGrabable
                     currCollide.OnLaserRendering(hit.distance);
                 }
             }
-            else
-            {
-                if (currCollide != null)
-                {
-                    currCollide.OnLaserCollide(false);
-                    currCollide = null;
-                }
-            }
+            return;
         }
-        else
+
+        if (currCollide != null)
         {
-            if (currCollide != null)
-            {
-                currCollide.OnLaserCollide(false);
-                currCollide = null;
-            }
-            OnLaserRendering(3000f);
+            currCollide.OnLaserCollide(false);
+            currCollide = null;
         }
+        OnLaserRendering(3000f);
     }
     public override void OnLaserCollide(bool isLaserContact)
     {
