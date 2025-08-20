@@ -7,6 +7,6 @@ public class ClearButton : MonoBehaviour
 {
     public void GotoMainScene()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("StartScene");
     }
 }
