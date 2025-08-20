@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sightOrigin: {fileID: 7529531466119253062}
-  detectRadius: 10
+  detectRadius: 20
   checkInterval: 0.15
   targetMask:
     serializedVersion: 2
