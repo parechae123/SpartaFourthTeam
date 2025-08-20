@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserReflecter : LaserBase,IGrabable
+public class LaserPortalRepeater : LaserBase
 {
-    public void OnGrabEnter()
+    LaserPortalRepeater otherPortal;
+    bool isRepeating = false;
+    protected override void Awake()
     {
-        //transform.parent = 플레이어Transform;
-        //transform.localPosition = 플레이어Transform.forward;
-    }
-    public void OnGrabExit()
-    {
-        transform.parent = null;
+        base.Awake();
+        otherPortal = transform.GetComponent<Portal>().GetOtherPortal.transform.GetComponent<LaserPortalRepeater>();
+        
     }
     public override void OnDetect()
     {
+        isRepeating = true;
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, float.PositiveInfinity, searchLayer))
         {
             OnLaserRendering(hit.distance);
@@ -48,13 +48,27 @@ public class LaserReflecter : LaserBase,IGrabable
     }
     public override void OnLaserCollide(bool isLaserContact)
     {
-        if (isLaserContact && !SearchDuplicatedSign(this)) 
-        { 
-            OnDetect(); 
+        if (isLaserContact && !SearchDuplicatedSign(this))
+        {
+            if (currCollide != null)
+            {
+                if (SearchDuplicatedSign(this)) return;
+            }
+            otherPortal.OnDetect();
+            currCollide = otherPortal;
         }
         else
         {
             ChildLaserOff();
+            if (!isRepeating)
+            {
+                otherPortal.OnLaserCollide(isLaserContact);
+                return;
+            }
+            otherPortal.ChildLaserOff();
+            currCollide = null;
+            isRepeating = false;
         }
     }
+
 }
