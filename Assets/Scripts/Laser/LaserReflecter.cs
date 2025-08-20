@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LaserReflecter : LaserBase,IGrabable
 {
-    bool isContacted = false;
     public void OnGrabEnter()
     {
         //transform.parent = 플레이어Transform;
@@ -21,56 +20,41 @@ public class LaserReflecter : LaserBase,IGrabable
             OnLaserRendering(hit.distance);
             if (TempLaserDict.GetInstance.GetLaserCollide.ContainsKey(hit.collider))
             {
-                if (currCollide != TempLaserDict.GetInstance.GetLaserCollide[hit.collider]) currCollide = TempLaserDict.GetInstance.GetLaserCollide[hit.collider];
-                
-                if (!currCollide.IsInfiniteReflextion(this))
+                if (currCollide != null && currCollide != TempLaserDict.GetInstance.GetLaserCollide[hit.collider])
                 {
-                    
-                    TempLaserDict.GetInstance.GetLaserCollide[hit.collider].OnLaserCollide(true);
+                    currCollide.ChildLaserOff();
+                    currCollide.OnLaserCollide(false);
+                }
+                currCollide = TempLaserDict.GetInstance.GetLaserCollide[hit.collider];
+                if (/*!currCollide.IsInfiniteReflextion(this) &&*/ !currCollide.SearchDuplicatedSign(this))
+                {
+                    currCollide.OnLaserCollide(true);
                 }
                 else
                 {
-                    currCollide.OnLaserRendering(hit.distance);
-                }
-            }
-            else
-            {
-                if (currCollide != null)
-                {
-                    currCollide.OnLaserCollide(false);
+                    OnLaserRendering(hit.distance);
+                    //currCollide.OnLaserCollide(false);
                     currCollide = null;
                 }
             }
+            return;
         }
-        else
+        if (currCollide != null)
         {
-            if (currCollide != null)
-            {
-                currCollide.OnLaserCollide(false);
-                currCollide = null;
-            }
-            OnLaserRendering(3000f);
+            currCollide.OnLaserCollide(false);
+            currCollide = null;
         }
+        OnLaserRendering(3000f);
     }
     public override void OnLaserCollide(bool isLaserContact)
     {
-        if (isLaserContact) OnDetect();
+        if (isLaserContact && !SearchDuplicatedSign(this)) 
+        { 
+            OnDetect(); 
+        }
         else
         {
             ChildLaserOff();
         }
-    }
-    public override bool IsInfiniteReflextion(ILaserCollide laser)
-    {
-        if (laser == null) return true;
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, float.PositiveInfinity, searchLayer))
-        {
-            TempLaserDict.GetInstance.GetLaserCollide.TryGetValue(hit.collider, out ILaserCollide compare);
-            if (compare == laser)
-            {
-                return true;
-            }
-        }
-        return false;
     }
 }

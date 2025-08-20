@@ -5,7 +5,7 @@ using System;
 
 public class LaserIn : LaserBase , IObjectTrigger
 {
-    private bool isActivated;
+    [SerializeField]private bool isActivated;
     public bool IsActivated { get { return isActivated; } }
     public ValueChangeFunc OnValueChanged { get; set; }
 
@@ -19,5 +19,9 @@ public class LaserIn : LaserBase , IObjectTrigger
         if (IsActivated == isLaserContact) return;
         isActivated = isLaserContact;
         OnValueChanged?.Invoke(isLaserContact);
+    }
+    public override bool SearchDuplicatedSign(ILaserCollide next)
+    {
+        return false;
     }
 }

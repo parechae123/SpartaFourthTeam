@@ -7,8 +7,9 @@ public class Bullet : MonoBehaviour, ICollideAction
     //총알 속도,데미지,지속시간 설정
     [Header("Bullet Settings")]
     [SerializeField] private float speed = 20f;
-    [SerializeField] private int damage = 10; //나중에 데미지처리시사용
+    [SerializeField] private int damage = 10;
     [SerializeField] private float lifeTime = 3f;
+    [SerializeField] private float knockbackForce = 80f;
 
     [Header("Layer Settings")]
     [SerializeField] private LayerMask hitMask;
@@ -59,7 +60,7 @@ public class Bullet : MonoBehaviour, ICollideAction
         despawnTime = Time.time + lifeTime;// 수명 만료 시각 지정
     }
 
-    public void OnCollide(Collider other)// 나중에 플레이어 데미지 처리
+    public void OnCollide(Collider other)
     {
         if (hasHit || other == null) return;
 
@@ -70,8 +71,19 @@ public class Bullet : MonoBehaviour, ICollideAction
         int playerLayer = LayerMask.NameToLayer("Player");
         if (other.gameObject.layer != playerLayer)
             return;
-
+        //플레이어 데미지 처리
         other.GetComponent<Player>().OnDamageAppllied(damage);
+
+        //넉백 처리
+        var targetRb = other.attachedRigidbody ?? other.GetComponentInParent<Rigidbody>();
+        if (targetRb != null && !targetRb.isKinematic)
+        {
+            Vector3 dir = (rb != null && rb.velocity.sqrMagnitude > 0.0001f)
+                        ? rb.velocity.normalized
+                        : (targetRb.worldCenterOfMass - transform.position).normalized;
+
+            targetRb.AddForce(dir * knockbackForce, ForceMode.Impulse);
+        }
 
         hasHit = true; //중복타격 방지
         Despawn(); //총알 풀로 반환
