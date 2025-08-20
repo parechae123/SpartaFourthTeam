@@ -83,7 +83,7 @@ public class Bullet : MonoBehaviour, ICollideAction
                         ? rb.velocity.normalized
                         : (targetRb.worldCenterOfMass - transform.position).normalized;
 
-            targetRb.AddForce(dir * knockbackForce, ForceMode.Impulse);
+            targetRb.AddForce(dir * knockbackForce, ForceMode.VelocityChange);
         }
 
         hasHit = true; //중복타격 방지

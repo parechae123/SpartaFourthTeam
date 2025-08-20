@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ClearButton : MonoBehaviour
 {
+
     public void GotoMainScene()
     {
         SceneManager.LoadScene("StartScene");
