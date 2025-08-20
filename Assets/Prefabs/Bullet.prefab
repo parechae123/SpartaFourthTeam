@@ -123,7 +123,7 @@ MonoBehaviour:
   speed: 20
   damage: 10
   lifeTime: 3
-  knockbackForce: 80
+  knockbackForce: 200
   hitMask:
     serializedVersion: 2
     m_Bits: 64
