@@ -3546,7 +3546,8 @@ MonoBehaviour:
   closeButton: {fileID: 1679865444}
   soundSlider: {fileID: 1951345741}
   panelStage: {fileID: 54294803}
-  stageSceneNames: []
+  stageSceneNames:
+  - Stage1Scene
 --- !u!1 &1936205171
 GameObject:
   m_ObjectHideFlags: 0
