@@ -40,6 +40,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PortalOneActive",
+                    "type": "Button",
+                    "id": "10ea5470-4820-4d8e-bc86-73b557ef8cec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PortalTwoActive",
+                    "type": "Button",
+                    "id": "34690d49-83c7-4cc3-8bbc-9aac4793ca63",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -123,11 +141,33 @@
                 {
                     "name": "",
                     "id": "44b69dfb-0261-41d4-8bd4-f6dfa10aaac2",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26d1b23c-7998-440a-810d-382f84963f7e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PortalOneActive",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "02fb6352-5aa8-4041-b699-c60d47659a39",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PortalTwoActive",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
