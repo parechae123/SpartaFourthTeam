@@ -41,7 +41,7 @@ public class MovingPlatform : MonoBehaviour, IMoveable
         Rigidbody rb = other.rigidbody;
         if (rb != null)
         {
-            other.transform.SetParent(transform, true);
+            other.transform.SetParent(transform);
         }
     }
 
