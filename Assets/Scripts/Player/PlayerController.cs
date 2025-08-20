@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour, IMoveable
     [Header("PortalControl")]
     [SerializeField] Portal[] portals;
     [SerializeField] Transform portalsParent;
-    const float PORTALMAXDISTANCE = 5.0f;
+    const float PORTALMAXDISTANCE = 20.0f;
 
 
     //Other not shown in Inspector
