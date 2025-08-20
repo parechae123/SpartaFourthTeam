@@ -7,6 +7,7 @@ public class ButtonManager : MonoBehaviour
 {
     public GameObject pauseMenu;
     private bool isPaused = false;
+    private bool SetSave = false;
 
     private void Update()
     {
@@ -21,11 +22,6 @@ public class ButtonManager : MonoBehaviour
                 PauseGame();
             }
         }
-    }
-
-    public void QuitGame()
-    {
-        SceneManager.LoadScene("StartScene");
     }
 
     public void ResumGame()
