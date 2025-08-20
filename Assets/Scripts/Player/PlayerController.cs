@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour, IMoveable
         for (int i = 0; i < portals.Length; i++)
         {
             portals[i] = Instantiate(portals[i], portalsParent);
-            portals[i].gameObject.SetActive(false);
+            portals[i].gameObject.SetActive(true);
         }
         portals[0].SetOtherPortal = portals[1];
         portals[1].SetOtherPortal = portals[0];
