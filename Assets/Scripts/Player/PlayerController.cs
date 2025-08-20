@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour, IMoveable
     [Header("ÀÌµ¿")]
     [SerializeField] float baseMovementSpeed;
     public float speedMultiplier = 1.0f;
+    const float MAXSPEED = 50.0f;
     public float moveSpeed { get { return baseMovementSpeed * speedMultiplier; } set { return; } }
     Vector2 currentMoveInput = Vector2.zero;
 
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour, IMoveable
     [Header("PortalControl")]
     [SerializeField] Portal[] portals;
     [SerializeField] Transform portalsParent;
-    const float PORTALMAXDISTANCE = 5.0f;
+    const float PORTALMAXDISTANCE = 10.0f;
 
 
     //Other not shown in Inspector
@@ -85,6 +86,8 @@ public class PlayerController : MonoBehaviour, IMoveable
     private void FixedUpdate()
     {
         OnMove(currentMoveInput);
+        if (rb.velocity.magnitude > MAXSPEED)
+            rb.velocity = rb.velocity.normalized * MAXSPEED;
     }
 
     private void Update()
@@ -181,6 +184,14 @@ public class PlayerController : MonoBehaviour, IMoveable
             PortalAction(1);
     }
 
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+            speedMultiplier = 1.2f;
+        else if (context.phase == InputActionPhase.Canceled)
+            speedMultiplier = 1.0f;
+    }
+
 
 
     //inputActions End
@@ -189,7 +200,7 @@ public class PlayerController : MonoBehaviour, IMoveable
     public void OnMove(Vector3 movement)
     {
         Vector3 curdir = transform.forward * movement.y + transform.right * movement.x;
-        curdir = curdir * moveSpeed * Time.fixedDeltaTime;
+        curdir = curdir * moveSpeed * speedMultiplier * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + curdir);
     }
     //Check if Player is Grounded
