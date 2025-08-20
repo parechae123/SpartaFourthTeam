@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sightOrigin: {fileID: 7529531466119253062}
-  detectRadius: 50
+  detectRadius: 10
   checkInterval: 0.15
   targetMask:
     serializedVersion: 2
@@ -214,7 +214,7 @@ Transform:
   m_GameObject: {fileID: 4454162304242645192}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.72236395, z: 0, w: 0.69151306}
-  m_LocalPosition: {x: -20, y: 20.03, z: -20}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.9995537, y: 4, z: 4.002212}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 2924782121703633514}
   - component: {fileID: 3267411664242913435}
   - component: {fileID: 4750491494252971309}
-  - component: {fileID: 3111517535905486624}
+  - component: {fileID: 1889628758082917493}
   m_Layer: 7
   m_Name: canon_lvl_1
   m_TagString: Untagged
@@ -399,7 +399,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &3111517535905486624
+--- !u!95 &1889628758082917493
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
