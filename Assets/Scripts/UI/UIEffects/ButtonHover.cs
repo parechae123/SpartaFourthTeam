@@ -10,11 +10,11 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     [Header("Colors")]
     [SerializeField] Color normalColor = new(0.00f, 0.90f, 1f, 1f);
-    [SerializeField] Color hoverColor  = new(0.12f, 0.55f, 1f, 1f);
+    [SerializeField] Color hoverColor = new(0.12f, 0.55f, 1f, 1f);
 
     [Header("Motion")]
     [SerializeField] float hoverScale = 1.05f;
-    [SerializeField] float duration   = 0.12f;
+    [SerializeField] float duration = 0.12f;
 
     Tween loop;
 
@@ -48,5 +48,10 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         loop?.Kill();
         transform.DOKill();
         target?.DOKill();
+    }
+    //화면전환시 종료하도록 설정
+    void OnDestroy()
+    {
+        KillAll();
     }
 }
