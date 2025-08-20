@@ -37,7 +37,11 @@ public class ButtonManager : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
     }
-
+    
+    public void GoToMainScene()
+    { 
+        SceneManager.LoadScene("StartScene");
+    }
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
