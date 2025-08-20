@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable
 {
+    public bool isUiOpen = false;
     //Default player components
     IMoveable playerController;
     

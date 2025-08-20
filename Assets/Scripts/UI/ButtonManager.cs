@@ -13,6 +13,7 @@ public class ButtonManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            
             if (isPaused)
             {
                 ResumGame();
@@ -29,6 +30,9 @@ public class ButtonManager : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        PlayerManager.Instance.player.isUiOpen = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void PauseGame()
@@ -36,6 +40,9 @@ public class ButtonManager : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+        PlayerManager.Instance.player.isUiOpen = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     
     public void GoToMainScene()
@@ -44,6 +51,7 @@ public class ButtonManager : MonoBehaviour
     }
     public void RestartGame()
     {
+        Debug.Log("Restarting Game");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
