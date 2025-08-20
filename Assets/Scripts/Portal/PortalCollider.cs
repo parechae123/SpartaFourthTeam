@@ -20,6 +20,7 @@ public class PortalCollider : MonoBehaviour
             return;
         parentPortal.GetOtherPortal.isPortalActive = false;
         collider.transform.position = parentPortal.GetOtherPortal.transform.position + parentPortal.GetOtherPortal.transform.forward;
+        rigid.velocity = parentPortal.GetOtherPortal.transform.forward * rigid.velocity.magnitude;
         collider.transform.eulerAngles = new Vector3(collider.transform.eulerAngles.x, parentPortal.GetOtherPortal.transform.forward.x * 90.0f);
     }
 
