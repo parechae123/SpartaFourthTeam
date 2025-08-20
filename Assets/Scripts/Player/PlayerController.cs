@@ -131,6 +131,8 @@ public class PlayerController : MonoBehaviour, IMoveable
 
     private void LateUpdate()
     {
+        if(player.isUiOpen)
+            return;
         OnLook();
     }
 
