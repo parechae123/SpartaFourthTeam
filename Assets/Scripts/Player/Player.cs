@@ -9,7 +9,7 @@ public class Player : MonoBehaviour, IDamageable
     IMoveable playerController;
     
     //Player Info
-    [Header("플레이어 상태")]
+    [Header("플레이어 상태")] 
     [SerializeField] Condition[] conditions;
     bool isDead = false;
 
