@@ -17,7 +17,6 @@ public class Save : MonoBehaviour
     [System.Serializable]
     public class PlayerData
     {
-        public int playerHealth;
         public float playerPositionX;
         public float playerPositionY;
         public float playerPositionZ;
@@ -32,7 +31,6 @@ public class Save : MonoBehaviour
     }
 
     public Transform playerTransform;
-    public Condition playerHealth; // 플레이어 HP 스크립트 예시
     public List<BoxObject> grabbedItems; // 움직이는 아이템 리스트
 
     // 저장 함수
@@ -46,7 +44,6 @@ public class Save : MonoBehaviour
             playerPositionX = playerTransform.position.x,
             playerPositionY = playerTransform.position.y,
             playerPositionZ = playerTransform.position.z,
-            playerHealth = PlayerManager.Instance.player.Health
         };
         saveData.playerData = pData;
 
@@ -89,9 +86,6 @@ public class Save : MonoBehaviour
             saveData.playerData.playerPositionY,
             saveData.playerData.playerPositionZ
         );
-
-        
-         PlayerManager.Instance.player.Health = saveData.playerData.playerHealth;
 
         // 움직이는 아이템 위치 적용
         for (int i = 0; i < grabbedItems.Count && i < saveData.grabbedItems.Count; i++)
