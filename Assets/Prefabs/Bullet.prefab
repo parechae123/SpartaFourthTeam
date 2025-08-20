@@ -123,10 +123,13 @@ MonoBehaviour:
   speed: 20
   damage: 10
   lifeTime: 3
-  knockbackForce: 80
+  knockbackForce: 200
   hitMask:
     serializedVersion: 2
     m_Bits: 64
+  blockMask:
+    serializedVersion: 2
+    m_Bits: 512
   ignoredRoot: {fileID: 0}
 --- !u!54 &8302748324300893663
 Rigidbody:

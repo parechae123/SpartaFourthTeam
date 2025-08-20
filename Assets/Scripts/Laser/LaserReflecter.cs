@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LaserReflecter : LaserBase,IGrabable
 {
-    bool isContacted = false;
     public void OnGrabEnter()
     {
         //transform.parent = 플레이어Transform;
@@ -24,23 +23,22 @@ public class LaserReflecter : LaserBase,IGrabable
                 if (currCollide != null && currCollide != TempLaserDict.GetInstance.GetLaserCollide[hit.collider])
                 {
                     currCollide.ChildLaserOff();
+                    currCollide.OnLaserCollide(false);
                 }
-
                 currCollide = TempLaserDict.GetInstance.GetLaserCollide[hit.collider];
-
-                if (!currCollide.IsInfiniteReflextion(this))
+                if (/*!currCollide.IsInfiniteReflextion(this) &&*/ !currCollide.SearchDuplicatedSign(this))
                 {
-
-                    TempLaserDict.GetInstance.GetLaserCollide[hit.collider].OnLaserCollide(true);
+                    currCollide.OnLaserCollide(true);
                 }
                 else
                 {
-                    currCollide.OnLaserRendering(hit.distance);
+                    OnLaserRendering(hit.distance);
+                    //currCollide.OnLaserCollide(false);
+                    currCollide = null;
                 }
             }
             return;
         }
-
         if (currCollide != null)
         {
             currCollide.OnLaserCollide(false);
@@ -50,23 +48,13 @@ public class LaserReflecter : LaserBase,IGrabable
     }
     public override void OnLaserCollide(bool isLaserContact)
     {
-        if (isLaserContact) OnDetect();
+        if (isLaserContact && !SearchDuplicatedSign(this)) 
+        { 
+            OnDetect(); 
+        }
         else
         {
             ChildLaserOff();
         }
-    }
-    public override bool IsInfiniteReflextion(ILaserCollide laser)
-    {
-        if (laser == null) return true;
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, float.PositiveInfinity, searchLayer))
-        {
-            TempLaserDict.GetInstance.GetLaserCollide.TryGetValue(hit.collider, out ILaserCollide compare);
-            if (compare == laser)
-            {
-                return true;
-            }
-        }
-        return false;
     }
 }

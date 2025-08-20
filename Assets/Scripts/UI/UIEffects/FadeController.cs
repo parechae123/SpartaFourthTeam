@@ -2,9 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class TitleAnimator : MonoBehaviour
+public class FadeController : MonoBehaviour
 {
     [SerializeField] private Image titleImage;
+    private Sequence titleSequence;
+    private Tween loopTween;
 
     void Start()
     {
@@ -13,15 +15,27 @@ public class TitleAnimator : MonoBehaviour
         titleImage.color = new Color(1, 1, 1, 0); 
         transform.localScale = Vector3.one * 0.8f;
 
-        Sequence seq = DOTween.Sequence();
-        seq.Append(titleImage.DOFade(1f, 4f));
-        seq.Join(transform.DOScale(1f, 4f).SetEase(Ease.OutBack));
+        titleSequence = DOTween.Sequence();
+        titleSequence.Append(titleImage.DOFade(1f, 4f));
+        titleSequence.Join(transform.DOScale(1f, 4f).SetEase(Ease.OutBack));
 
-        seq.AppendCallback(() =>
+        titleSequence.AppendCallback(() =>
         {
-            transform.DOScale(1.02f, 2f)
-                     .SetLoops(-1, LoopType.Yoyo)
-                     .SetEase(Ease.InOutSine);
+            loopTween = transform.DOScale(1.02f, 2f)
+                                 .SetLoops(-1, LoopType.Yoyo)
+                                 .SetEase(Ease.InOutSine);
         });
+    }
+    //화면전환시 종료하도록 설정
+    void OnDestroy()
+    {
+        if (titleSequence != null && titleSequence.IsActive())
+        {
+            titleSequence.Kill();
+        }
+        if (loopTween != null && loopTween.IsActive())
+        {
+            loopTween.Kill();
+        }
     }
 }
