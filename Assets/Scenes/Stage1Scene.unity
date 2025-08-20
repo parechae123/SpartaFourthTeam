@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1157,6 +1157,26 @@ PrefabInstance:
     - target: {fileID: 1968441347472182858, guid: 92145fda22382e649ae466c2b0645db4, type: 3}
       propertyPath: m_Name
       value: Canon_lvl_1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285808118061195861, guid: 92145fda22382e649ae466c2b0645db4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285808118061195861, guid: 92145fda22382e649ae466c2b0645db4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285808118061195861, guid: 92145fda22382e649ae466c2b0645db4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285808118061195861, guid: 92145fda22382e649ae466c2b0645db4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285808118061195861, guid: 92145fda22382e649ae466c2b0645db4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6290843998006728154, guid: 92145fda22382e649ae466c2b0645db4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3181,6 +3201,30 @@ PrefabInstance:
     - target: {fileID: 1968441347472182858, guid: 92145fda22382e649ae466c2b0645db4, type: 3}
       propertyPath: m_Name
       value: Canon_lvl_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2840882960129389852, guid: 92145fda22382e649ae466c2b0645db4, type: 3}
+      propertyPath: detectRadius
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285808118061195861, guid: 92145fda22382e649ae466c2b0645db4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285808118061195861, guid: 92145fda22382e649ae466c2b0645db4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285808118061195861, guid: 92145fda22382e649ae466c2b0645db4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285808118061195861, guid: 92145fda22382e649ae466c2b0645db4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285808118061195861, guid: 92145fda22382e649ae466c2b0645db4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 6290843998006728154, guid: 92145fda22382e649ae466c2b0645db4, type: 3}
       propertyPath: m_LocalPosition.x

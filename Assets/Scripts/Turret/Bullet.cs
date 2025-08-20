@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour, ICollideAction
 
     [Header("Layer Settings")]
     [SerializeField] private LayerMask hitMask;
+    [SerializeField] private LayerMask blockMask;
     [SerializeField] private Transform ignoredRoot;
 
     private Rigidbody rb;
@@ -69,8 +70,8 @@ public class Bullet : MonoBehaviour, ICollideAction
 
         // 레이어 마스크 필터
         int playerLayer = LayerMask.NameToLayer("Player");
-        if (other.gameObject.layer != playerLayer)
-            return;
+        if (other.gameObject.layer != playerLayer) return;
+
         //플레이어 데미지 처리
         other.GetComponent<Player>().OnDamageAppllied(damage);
 
@@ -91,6 +92,13 @@ public class Bullet : MonoBehaviour, ICollideAction
 
     private void OnTriggerEnter(Collider other)
     {
+        // blockMask에 포함된 레이어인지 검사
+        if (((1 << other.gameObject.layer) & blockMask.value) != 0)
+        {
+            Despawn();
+            return;
+        }
+
         OnCollide(other);
     }
 }
