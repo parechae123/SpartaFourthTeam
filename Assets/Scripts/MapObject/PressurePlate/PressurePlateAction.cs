@@ -3,6 +3,7 @@ using UnityEngine;
 public class PressurePlateAction : MonoBehaviour
 {
     [Header("Refs")]
+    [SerializeField] private PlayerController controller;
     [SerializeField] private PressurePlate press;
     [SerializeField] private Animator targetAnimator;
     [SerializeField] private string pressedBoolName = "Pressed";
@@ -39,14 +40,19 @@ public class PressurePlateAction : MonoBehaviour
 
     private void SpawnOrRespawnCube()
     {
-        if (!cubePrefab || !cubeSpawnPoint)
+        if (cubePrefab == null || !cubeSpawnPoint)
         {
             Debug.LogWarning("PressurePlateAction: cubePrefab 또는 cubeSpawnPoint가 비어있습니다.");
             return;
         }
 
         if (currentCube != null)
+        {
+            controller.DropGrabable(currentCube.GetComponent<IGrabable>());
             Destroy(currentCube);
+        }
+
+
 
         currentCube = Instantiate(cubePrefab, cubeSpawnPoint.position, cubeSpawnPoint.rotation);
         currentCube.transform.SetParent(cubeSpawnPoint, true);
