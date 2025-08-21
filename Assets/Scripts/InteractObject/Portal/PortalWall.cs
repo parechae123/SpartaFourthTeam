@@ -14,6 +14,6 @@ public class PortalWall : MonoBehaviour
         portal.transform.SetParent(transform);
         portal.transform.localScale = new Vector3(1 / transform.localScale.x, 1 / transform.localScale.y, 1 / transform.localScale.z);
         portal.transform.position = hit.point + transform.forward * 0.01f;
-        Debug.Log(hit.normal);
+        portal.RefreshPortal();
     }
 }
