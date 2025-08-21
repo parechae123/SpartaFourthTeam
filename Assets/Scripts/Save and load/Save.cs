@@ -63,6 +63,7 @@ public class Save : MonoBehaviour
         }
         saveData.currentStageIndex = GameManager.Instance.CurrentStageIndex;
         saveData.StageClearStatus = new List<bool>(GameManager.Instance.StageClearStatus);
+        Debug.Log("현재 스테이지 인덱스: " + saveData.currentStageIndex);
 
         string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(Application.persistentDataPath + "/savegame.json", json);
@@ -133,7 +134,7 @@ public class Save : MonoBehaviour
         }
         else
         {
-                       Debug.LogWarning("세이브 매니저를 찾을 수 없습니다.");
+         Debug.LogWarning("세이브 매니저를 찾을 수 없습니다.");
         }
     }
 }

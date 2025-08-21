@@ -142,6 +142,7 @@ public class StartSceneUI : MonoBehaviour
 
     void LoadStageByIndex(int index)
     {
+        GameManager.Instance.CurrentStageIndex = index;
         AudioManager.Instance.StopBGM();
         if (stageSceneNames == null || index < 0 || index >= stageSceneNames.Length || string.IsNullOrEmpty(stageSceneNames[index]))
         {
