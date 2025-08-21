@@ -60,6 +60,8 @@ public class ButtonManager : MonoBehaviour
         Time.timeScale = 1f;
         int currentIndex = SceneManager.GetActiveScene().buildIndex;
         int nextStageIndex = currentIndex + 1;
+        Debug.Log($"현재 씬 인덱스: {currentIndex}, 다음 씬 인덱스: {nextStageIndex}");
+        Debug.Log($"빌드 세팅 씬 개수: {SceneManager.sceneCountInBuildSettings}");
 
         SceneManager.LoadScene(nextStageIndex);
         // 빌드 설정에 있는 씬 수를 넘어가지 않도록 확인
