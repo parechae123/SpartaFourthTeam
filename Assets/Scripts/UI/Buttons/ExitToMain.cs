@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class ExitToMain : MonoBehaviour
 {
     public GameObject Panel;
@@ -18,7 +19,7 @@ public class ExitToMain : MonoBehaviour
     {
         GotoMainMenu();
     }
-    
+
     public void OnClickExitMain()
     {
         Panel.SetActive(true);
@@ -26,10 +27,10 @@ public class ExitToMain : MonoBehaviour
 
     void GotoMainMenu()
     {
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
         SceneManager.LoadScene("StartScene");
     }
-
-
-   
 }
+
+
+
