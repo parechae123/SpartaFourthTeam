@@ -5,7 +5,11 @@ public class StartSceneUI : MonoBehaviour
 {
     [Header("Main Buttons")]
     [SerializeField] Button startButton;
+
     [SerializeField] Button continueButton;
+
+    [SerializeField] Button loadButton;
+
     [SerializeField] Button exitButton;
     [SerializeField] Button stageMenuButton;
 
@@ -59,6 +63,12 @@ public class StartSceneUI : MonoBehaviour
             continueButton.onClick.AddListener(OnContinueClicked);
         }
 
+        if (loadButton)
+        {
+            loadButton.onClick.RemoveAllListeners();
+            loadButton.onClick.AddListener(OnLoadClicked);
+        }
+
         if (exitButton)
         {
             exitButton.onClick.RemoveAllListeners();
@@ -95,8 +105,13 @@ public class StartSceneUI : MonoBehaviour
     void OnDisable()
     {
         if (startButton)      startButton.onClick.RemoveAllListeners();
+
         if (continueButton)      continueButton.onClick.RemoveAllListeners();
         if (exitButton) exitButton.onClick.RemoveAllListeners();
+
+        if (loadButton)       loadButton.onClick.RemoveAllListeners();
+        if (exitButton)       exitButton.onClick.RemoveAllListeners();
+
         if (stageMenuButton)  stageMenuButton.onClick.RemoveAllListeners();
         if (closeButton)      closeButton.onClick.RemoveAllListeners();
 
@@ -111,10 +126,26 @@ public class StartSceneUI : MonoBehaviour
     {
         LoadStageByIndex(0);
     }
+
     public void OnContinueClicked()
     {
         if (saver) saver.LoadGame(); //추후save수정에 따라 수정
     }
+
+
+    public void OnLoadClicked()
+    {
+        Save save = new Save();
+        save.LoadGame();
+        if (GameManager.Instance.CurrentStageIndex < 0)
+        {
+            Debug.LogWarning("현재 스테이지 인덱스가 유효하지 않습니다.");
+            return;
+        }
+        LoadStageByIndex(GameManager.Instance.CurrentStageIndex);
+    }
+
+
     public void OnExitClicked()
     {
 #if UNITY_EDITOR
