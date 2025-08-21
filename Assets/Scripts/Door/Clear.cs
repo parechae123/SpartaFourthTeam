@@ -9,6 +9,17 @@ public class Clear : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Clear Triggered");
+            Save saveManager = FindObjectOfType<Save>();
+            if (saveManager != null)
+            {
+                Debug.Log("클리어 스테이지 저장완료");
+                saveManager.OnStageClear(); // Save the game state
+            }
+            else
+            {
+                Debug.LogWarning("Save manager not found, skipping save.");
+            }
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             SceneManager.LoadScene("ClearScene");
