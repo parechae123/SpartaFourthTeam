@@ -3058,7 +3058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 7400226059376277832, guid: 77671eeecdf52154389040835ddc8c56, type: 3}
   grabbedItems:
-  - {fileID: 0}
+  - {fileID: 3861401993082520857, guid: 8ea9a20ed2333c24692bb750a75f9ba3, type: 3}
 --- !u!4 &1565577874
 Transform:
   m_ObjectHideFlags: 0
