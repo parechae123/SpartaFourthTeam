@@ -3976,6 +3976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startButton: {fileID: 455957657}
+  continueButton: {fileID: 0}
   loadButton: {fileID: 0}
   exitButton: {fileID: 1774059494}
   stageMenuButton: {fileID: 1871881505}
@@ -3985,10 +3986,11 @@ MonoBehaviour:
   closeButton: {fileID: 1679865444}
   soundSlider: {fileID: 1951345741}
   panelStage: {fileID: 54294803}
+  saver: {fileID: 0}
   stageSceneNames:
-  - Stage1Scene
-  - SecondStage
-  - ThirdStage
+  - StageOne
+  - StageTwo
+  - StageThree
 --- !u!1 &1936205171
 GameObject:
   m_ObjectHideFlags: 0

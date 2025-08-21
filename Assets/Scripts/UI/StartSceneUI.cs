@@ -22,7 +22,7 @@ public class StartSceneUI : MonoBehaviour
     [Header("Others")]
     [SerializeField] Slider soundSlider;
     [SerializeField] GameObject panelStage;
-    [SerializeField] Save saver;
+    [SerializeField] SaveManager saver;
 
     [Tooltip("스테이지 씬 이름")]
     [SerializeField] string[] stageSceneNames;
@@ -135,7 +135,7 @@ public class StartSceneUI : MonoBehaviour
 
     public void OnLoadClicked()
     {
-        Save save = new Save();
+        SaveManager save = new SaveManager();
         save.LoadGame();
         if (GameManager.Instance.CurrentStageIndex < 0)
         {
