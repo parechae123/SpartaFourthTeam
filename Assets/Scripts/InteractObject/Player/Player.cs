@@ -8,8 +8,6 @@ public class Player : MonoBehaviour
     public bool isUiOpen = false;
     //Default player components
     IMoveable playerController;
-
-
     public void Awake()
     {
         PlayerManager.Instance.player = this;
