@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900fc2954e2dc154da5fad45302fb2ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 2236787406085803867}
 --- !u!54 &2236787406085803867
 Rigidbody:
   m_ObjectHideFlags: 0

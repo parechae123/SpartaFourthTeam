@@ -13,7 +13,7 @@ public class ButtonManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            
+
             if (isPaused)
             {
                 ResumGame();
@@ -44,9 +44,9 @@ public class ButtonManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-    
+
     public void GoToMainScene()
-    { 
+    {
         SceneManager.LoadScene("StartScene");
     }
     public void RestartGame()
@@ -55,12 +55,19 @@ public class ButtonManager : MonoBehaviour
         Debug.Log("Restarting Game");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    //public void NextStage()
-    //{
-    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    //    GameManager.Instance.CurrentStageIndex = nextStageIndex;
+    public void NextStage()
+    {
+        Time.timeScale = 1f;
+        int currentIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextStageIndex = currentIndex + 1;
 
-    //    // 다음 씬 로드
-    //    SceneManager.LoadScene(nextStageIndex);
-    //}
+        SceneManager.LoadScene(nextStageIndex);
+        // 빌드 설정에 있는 씬 수를 넘어가지 않도록 확인
+        if (nextStageIndex >= SceneManager.sceneCountInBuildSettings)
+        {
+            Debug.Log("마지막 스테이지입니다. 메인 화면으로 이동합니다.");
+            SceneManager.LoadScene("StartScene");  // 메인 씬 이름
+            return;
+        }
+    }
 }
