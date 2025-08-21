@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static SaveManager;
 using System.IO;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public int CurrentStageIndex;
     public List<bool> StageClearStatus = new List<bool>();
+    public SaveManager saveManager;
     public static GameManager Instance
     {
         get
@@ -22,19 +24,17 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
-    public PlayerManager playerManager;
     private void Awake()
     {
-        if (playerManager == null) return;
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            SaveManager saveManager = FindObjectOfType<SaveManager>();
-            if (saveManager != null)
+            if (saveManager == null)
             {
-                saveManager.LoadClearStatus();
+                saveManager = transform.AddComponent<SaveManager>();
             }
+            saveManager.LoadClearStatus();
         }
         else if (instance != this)
         {
