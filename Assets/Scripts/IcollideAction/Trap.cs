@@ -29,4 +29,6 @@ public class Trap : MonoBehaviour, ICollideAction
     {
        OnCollide(collision.collider);  // 충돌 시 OnCollide 호출
     }
+
+    
 }
