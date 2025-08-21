@@ -6,6 +6,7 @@ public class JumpPad : MonoBehaviour, ICollideAction
 {
     [SerializeField] private float jumpForce;
     public Collider objectCollider { get; set; }
+    [SerializeField] private Vector3 forceDirection = Vector3.up;
 
     /*
     private void OnTriggerEnter(Collider other)
@@ -19,6 +20,10 @@ public class JumpPad : MonoBehaviour, ICollideAction
     }
     */
 
+    private void Awake()
+    {
+        forceDirection = forceDirection.normalized;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
@@ -35,19 +40,7 @@ public class JumpPad : MonoBehaviour, ICollideAction
 
         if (rb == null) return;
 
-        Vector3 launchDirection = new Vector3(rb.velocity.x, 0, rb.velocity.z).normalized;
-
-        // 플레이어가 정지 상태일 경우, 위쪽 방향으로만 힘을 가함
-        if (launchDirection == Vector3.zero)
-        {
-            launchDirection = Vector3.up;
-        }
-        else
-        {
-            launchDirection = (launchDirection + Vector3.up * 0.5f).normalized;
-        }
-
         //rb.velocity = Vector3.zero;
-        rb.AddForce(launchDirection * jumpForce, ForceMode.Impulse);
+        rb.AddForce(forceDirection * jumpForce, ForceMode.Impulse);
     }
 }
