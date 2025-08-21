@@ -83,6 +83,7 @@ public class ConditionMovingPlatform : MonoBehaviour, IMoveable
         if (rb != null)
         {
             other.transform.SetParent(null, true);
+            other.transform.localScale = Vector3.one;
         }
     }
 
