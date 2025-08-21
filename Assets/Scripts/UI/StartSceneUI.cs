@@ -5,6 +5,7 @@ public class StartSceneUI : MonoBehaviour
 {
     [Header("Main Buttons")]
     [SerializeField] Button startButton;
+    [SerializeField] Button continueButton;
     [SerializeField] Button exitButton;
     [SerializeField] Button stageMenuButton;
 
@@ -17,8 +18,9 @@ public class StartSceneUI : MonoBehaviour
     [Header("Others")]
     [SerializeField] Slider soundSlider;
     [SerializeField] GameObject panelStage;
+    [SerializeField] Save saver;
 
-    [Tooltip("스테이지 씬 이름 (index: 각 스테이지 버튼)")]
+    [Tooltip("스테이지 씬 이름")]
     [SerializeField] string[] stageSceneNames;
 
     SlideEffect transition;
@@ -48,6 +50,11 @@ public class StartSceneUI : MonoBehaviour
         {
             startButton.onClick.RemoveAllListeners();
             startButton.onClick.AddListener(OnStartClicked);
+        }
+        if (continueButton)
+        {
+            continueButton.onClick.RemoveAllListeners();
+            continueButton.onClick.AddListener(OnContinueClicked);
         }
 
         if (exitButton)
@@ -86,7 +93,8 @@ public class StartSceneUI : MonoBehaviour
     void OnDisable()
     {
         if (startButton)      startButton.onClick.RemoveAllListeners();
-        if (exitButton)       exitButton.onClick.RemoveAllListeners();
+        if (continueButton)      continueButton.onClick.RemoveAllListeners();
+        if (exitButton) exitButton.onClick.RemoveAllListeners();
         if (stageMenuButton)  stageMenuButton.onClick.RemoveAllListeners();
         if (closeButton)      closeButton.onClick.RemoveAllListeners();
 
@@ -101,7 +109,10 @@ public class StartSceneUI : MonoBehaviour
     {
         LoadStageByIndex(0);
     }
-
+    public void OnContinueClicked()
+    {
+        if (saver) saver.LoadGame(); //추후save수정에 따라 수정
+    }
     public void OnExitClicked()
     {
 #if UNITY_EDITOR
