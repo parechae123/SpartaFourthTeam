@@ -8,6 +8,21 @@ public class ButtonManager : MonoBehaviour
     public GameObject pauseMenu;
     private bool isPaused = false;
     private bool SetSave = false;
+    public int CurrentinDex;
+    void Awake()
+    {
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
+        for (int i = 0; i < sceneCount; i++)
+        {
+            string path = SceneUtility.GetScenePathByBuildIndex(i);
+            string sceneName = System.IO.Path.GetFileNameWithoutExtension(path);
+
+            if (sceneName.StartsWith("Stage"))  // 스테이지 씬 이름 규칙 필터링
+            {
+                stageSceneNames.Add(sceneName);
+            }
+        }
+    }
 
     private void Update()
     {
@@ -55,21 +70,22 @@ public class ButtonManager : MonoBehaviour
         Debug.Log("Restarting Game");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    List<string> stageSceneNames = new List<string>();
+
+    
+
+    // 다음 스테이지 불러오기
     public void NextStage()
     {
-        Time.timeScale = 1f;
-        int currentIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextStageIndex = currentIndex + 1;
-        Debug.Log($"현재 씬 인덱스: {currentIndex}, 다음 씬 인덱스: {nextStageIndex}");
-        Debug.Log($"빌드 세팅 씬 개수: {SceneManager.sceneCountInBuildSettings}");
-
-        SceneManager.LoadScene(nextStageIndex);
-        // 빌드 설정에 있는 씬 수를 넘어가지 않도록 확인
-        if (nextStageIndex >= SceneManager.sceneCountInBuildSettings)
+        int nextStageIndex = GameManager.Instance.CurrentStageIndex + 1;
+        if (nextStageIndex >= stageSceneNames.Count)
         {
-            Debug.Log("마지막 스테이지입니다. 메인 화면으로 이동합니다.");
-            SceneManager.LoadScene("StartScene");  // 메인 씬 이름
+            Debug.Log("마지막 스테이지입니다.");
+            SceneManager.LoadScene("StartScene");
             return;
         }
+        GameManager.Instance.CurrentStageIndex = nextStageIndex;
+        SceneManager.LoadScene(stageSceneNames[nextStageIndex]);
     }
 }

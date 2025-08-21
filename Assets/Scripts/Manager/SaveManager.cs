@@ -132,6 +132,7 @@ public class SaveManager : MonoBehaviour
     {
         Debug.Log("스테이지 클리어 이벤트 발생");
         int clearedStage = GameManager.Instance.CurrentStageIndex;
+        Debug.Log("클리어된 스테이지 인덱스: " + clearedStage);
         GameManager.Instance.SetStageClear(clearedStage, true);
 
         SaveManager saveManager = FindObjectOfType<SaveManager>();
