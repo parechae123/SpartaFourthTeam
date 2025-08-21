@@ -12,6 +12,15 @@ public class PortalCollider : MonoBehaviour
         if (parentPortal == null)
             throw new System.Exception("Parent doesn't have portal");
     }
+
+    private void OnEnable()
+    {
+        Collider portalCollider = GetComponent<Collider>();
+        parentPortal.isPortalActive = true;
+        portalCollider.enabled = false;
+        portalCollider.enabled = true;
+    }
+
     private void OnTriggerEnter(Collider collider)
     {
         if (!parentPortal.GetOtherPortal.isPortalActive || !parentPortal.isPortalActive)

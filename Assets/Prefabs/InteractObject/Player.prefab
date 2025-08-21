@@ -234,7 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7400226059376277832}
   - component: {fileID: 2891506617105359525}
-  - component: {fileID: 4292449739125475848}
+  - component: {fileID: 39443450808703185}
   - component: {fileID: 3587213048313253716}
   - component: {fileID: 4845101702823365297}
   - component: {fileID: 8821564967056015279}
@@ -414,7 +414,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &4292449739125475848
+--- !u!114 &39443450808703185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -423,11 +423,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7546557835395052886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8660ec093270eb4f9bd0ae79ae129db, type: 3}
+  m_Script: {fileID: 11500000, guid: feda0c6611031524aa8edac8f54190c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditions:
-  - {fileID: 11400000, guid: 917ecfcd235b9064c94e4769b24a8f3e, type: 2}
+  isUiOpen: 0
 --- !u!114 &3587213048313253716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,7 +449,7 @@ MonoBehaviour:
   minLook: -80
   maxLook: 80
   lookSensitivity: 0.2
-  player: {fileID: 4292449739125475848}
+  player: {fileID: 0}
   grabDistance: 2
   UIParent: {fileID: 629887905105713196}
   crosshairImg: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
