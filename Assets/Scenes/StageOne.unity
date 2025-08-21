@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 109041257}
   - component: {fileID: 109041256}
   - component: {fileID: 109041255}
+  - component: {fileID: 109041260}
   - component: {fileID: 109041254}
   m_Layer: 9
   m_Name: Shield
@@ -270,6 +271,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 483037980}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
+--- !u!114 &109041260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109041253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db6701397c265664aaed9dac88b90e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minHeight: -15
 --- !u!1001 &175602196
 PrefabInstance:
   m_ObjectHideFlags: 0
