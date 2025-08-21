@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class LaserReflecter : LaserBase,IGrabable
 {
+    [SerializeField] Rigidbody rb;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        if (rb == null) rb = rb.GetComponent<Rigidbody>();
+    }
     public void OnGrabEnter()
     {
-        //transform.parent = 플레이어Transform;
-        //transform.localPosition = 플레이어Transform.forward;
+        rb.isKinematic = true;
+        Transform playerTransform = PlayerManager.Instance.player.transform;
+        transform.SetParent(playerTransform, false);
+        transform.position = playerTransform.position + playerTransform.forward * (1.5f) + Vector3.up;
     }
     public void OnGrabExit()
     {
-        transform.parent = null;
+        rb.isKinematic = false;
+        transform.SetParent(null);
     }
     public override void OnDetect()
     {
