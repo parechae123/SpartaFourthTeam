@@ -171,7 +171,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &109041255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +255,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109041253}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &109041259
 Transform:
   m_ObjectHideFlags: 0
@@ -264,13 +264,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109041253}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -37.33229, y: -3.1301992, z: -24.338898}
-  m_LocalScale: {x: 2, y: 0.5, z: 1.5}
+  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: 0, w: 0}
+  m_LocalPosition: {x: -36.19, y: -1, z: -23.53}
+  m_LocalScale: {x: 2.5, y: 2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 483037980}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 90}
 --- !u!114 &109041260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1205,7 +1205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eff137af4525594299b201d3d06647a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
 --- !u!136 &540839910
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1668,7 +1667,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eff137af4525594299b201d3d06647a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
 --- !u!136 &719105356
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2135,7 +2133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eff137af4525594299b201d3d06647a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
 --- !u!136 &877164762
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2951,7 +2948,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eff137af4525594299b201d3d06647a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
 --- !u!136 &1566317205
 CapsuleCollider:
   m_ObjectHideFlags: 0
