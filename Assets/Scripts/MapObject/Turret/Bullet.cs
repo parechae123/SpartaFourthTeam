@@ -7,7 +7,6 @@ public class Bullet : MonoBehaviour, ICollideAction
     //총알 속도,데미지,지속시간 설정
     [Header("Bullet Settings")]
     [SerializeField] private float speed = 20f;
-    [SerializeField] private int damage = 10;
     [SerializeField] private float lifeTime = 3f;
     [SerializeField] private float knockbackForce = 80f;
 

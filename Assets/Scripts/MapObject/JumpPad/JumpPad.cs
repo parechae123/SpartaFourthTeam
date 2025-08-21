@@ -8,21 +8,19 @@ public class JumpPad : MonoBehaviour, ICollideAction
     public Collider objectCollider { get; set; }
     [SerializeField] private Vector3 forceDirection = Vector3.up;
 
-    /*
-    private void OnTriggerEnter(Collider other)
-    {
-        Rigidbody rb = other.GetComponent<Rigidbody>();
-
-        if (rb != null)
-        {
-            OnCollide(other);
-        }
-    }
-    */
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip jumpSound;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         forceDirection = forceDirection.normalized;
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -42,5 +40,10 @@ public class JumpPad : MonoBehaviour, ICollideAction
 
         //rb.velocity = Vector3.zero;
         rb.AddForce(forceDirection * jumpForce, ForceMode.Impulse);
+
+        if (jumpSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(jumpSound);
+        }
     }
 }
