@@ -61,6 +61,7 @@ public class ButtonManager : MonoBehaviour
         int currentIndex = SceneManager.GetActiveScene().buildIndex;
         int nextStageIndex = currentIndex + 1;
 
+        SceneManager.LoadScene(nextStageIndex);
         // 빌드 설정에 있는 씬 수를 넘어가지 않도록 확인
         if (nextStageIndex >= SceneManager.sceneCountInBuildSettings)
         {
