@@ -518,8 +518,8 @@ GameObject:
   - component: {fileID: 3880571688591950549}
   - component: {fileID: 2586440124571143024}
   - component: {fileID: 1774808272034737107}
-  - component: {fileID: 5352064608303233854}
   - component: {fileID: 5108027963723683479}
+  - component: {fileID: 3690548144882600959}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
@@ -612,20 +612,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5352064608303233854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454965686289419069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1452d0649803c6f4e87b65feb0309d19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Panel: {fileID: 7881747695787054215}
-  saveManager: {fileID: 0}
 --- !u!114 &5108027963723683479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,6 +625,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 3353711968159444393}
+--- !u!114 &3690548144882600959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454965686289419069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1452d0649803c6f4e87b65feb0309d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Panel: {fileID: 7881747695787054215}
+  saveManager: {fileID: 4184470334783767030}
 --- !u!1 &1964226254707708892
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,7 +1760,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4637699958580532888}
-  - component: {fileID: 6011348590506857945}
+  - component: {fileID: 4184470334783767030}
   m_Layer: 0
   m_Name: Saveobject
   m_TagString: Untagged
@@ -1783,7 +1783,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1052235442521385451}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6011348590506857945
+--- !u!114 &4184470334783767030
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1792,10 +1792,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6049762641483992404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95116450dbea7fe4195f8811654ff53e, type: 3}
+  m_Script: {fileID: 11500000, guid: 083d465d2da5e34449587b717f0dba85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 7400226059376277832, guid: 77671eeecdf52154389040835ddc8c56, type: 3}
   grabbedItems: []
 --- !u!1 &6402392371563037820
 GameObject:
@@ -2751,7 +2751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 7881747695787054215}
-  saveManager: {fileID: 6011348590506857945}
+  saveManager: {fileID: 4184470334783767030}
 --- !u!1 &9009941974892764065
 GameObject:
   m_ObjectHideFlags: 0
@@ -2898,5 +2898,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1452d0649803c6f4e87b65feb0309d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panel: {fileID: 0}
+  Panel: {fileID: 7881747695787054215}
   saveManager: {fileID: 0}
