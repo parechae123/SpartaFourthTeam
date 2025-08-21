@@ -25,29 +25,20 @@ public class GameManager : MonoBehaviour
     public PlayerManager playerManager;
     private void Awake()
     {
+        if (playerManager == null) return;
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            Debug.Log("게임매니저 어웨이크 호출");
             SaveManager saveManager = FindObjectOfType<SaveManager>();
             if (saveManager != null)
             {
-                Debug.Log("게임매니저에서 세이브 매니저 찾음");
-                saveManager.LoadClearStatus(); 
+                saveManager.LoadClearStatus();
             }
         }
         else if (instance != this)
         {
             Destroy(gameObject);
-        }
-    }
-    void InitializeStageClearStatus()
-    {
-        int totalStages = 2;  // 총 스테이지 수에 맞게 조절
-        for (int i = 0; i < totalStages; i++)
-        {
-            StageClearStatus.Add(false);
         }
     }
 
@@ -58,19 +49,6 @@ public class GameManager : MonoBehaviour
             StageClearStatus.Add(false);
         }
         StageClearStatus[Index] = isClear;
-    }
-
-    public void OnclickLoadGame()
-    {
-        SaveManager saveManager = FindObjectOfType<SaveManager>();
-        if (saveManager != null)
-        {
-            saveManager.LoadGame();
-        }
-        else
-        {
-            Debug.LogWarning("Save manager not found.");
-        }
     }
 }
 
