@@ -42,14 +42,12 @@ public class DebugModule : MonoBehaviour
     /* Implement Test Codes Here */
     private void DoActionOne()
     {
-        Player player = testobject.GetComponent<Player>();
-        player.OnDamageAppllied(3);
+        return;
     }
 
     private void DoActionTwo()
     {
-        Player player = testobject.GetComponent<Player>();
-        player.OnHealApplied(4);
+        return;
     }
 
 
