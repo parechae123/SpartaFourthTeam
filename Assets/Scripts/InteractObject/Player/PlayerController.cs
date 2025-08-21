@@ -254,4 +254,15 @@ public class PlayerController : MonoBehaviour, IMoveable
             }
         }
     }
+
+    //TryDropItem
+    public void DropGrabable(IGrabable grabable)
+    {
+        if(grabable == null || currentGrabable == null) return;
+        if (currentGrabable == grabable)
+        {
+            currentGrabable = null;
+            isGrab = false;
+        }
+    }
 }
