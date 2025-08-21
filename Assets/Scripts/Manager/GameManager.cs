@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static SaveManager;
+using static Save;
 using System.IO;
 
 public class GameManager : MonoBehaviour
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             Debug.Log("게임매니저 어웨이크 호출");
-            SaveManager saveManager = FindObjectOfType<SaveManager>();
+            Save saveManager = FindObjectOfType<Save>();
             if (saveManager != null)
             {
                 Debug.Log("게임매니저에서 세이브 매니저 찾음");
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     public void OnclickLoadGame()
     {
-        SaveManager saveManager = FindObjectOfType<SaveManager>();
+        Save saveManager = FindObjectOfType<Save>();
         if (saveManager != null)
         {
             saveManager.LoadGame();

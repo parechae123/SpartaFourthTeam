@@ -18,7 +18,7 @@ public class StartSceneUI : MonoBehaviour
     [Header("Others")]
     [SerializeField] Slider soundSlider;
     [SerializeField] GameObject panelStage;
-    [SerializeField] SaveManager saver;
+    [SerializeField] Save saver;
 
     [Tooltip("스테이지 씬 이름")]
     [SerializeField] string[] stageSceneNames;

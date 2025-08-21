@@ -3986,9 +3986,9 @@ MonoBehaviour:
   panelStage: {fileID: 54294803}
   saver: {fileID: 0}
   stageSceneNames:
-  - StageOne
-  - StageTwo
-  - StageThree
+  - Stage1Scene
+  - SecondStage
+  - ThirdStage
 --- !u!1 &1936205171
 GameObject:
   m_ObjectHideFlags: 0
