@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 3353711968159444393}
+  CurrentinDex: 0
 --- !u!1 &250579610708771199
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 3353711968159444393}
+  CurrentinDex: 0
 --- !u!114 &3690548144882600959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1676,6 +1678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 3353711968159444393}
+  CurrentinDex: 0
 --- !u!1 &6044561830614655794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1808,7 +1811,7 @@ GameObject:
   - component: {fileID: 4260173428568719306}
   - component: {fileID: 7297267409302257339}
   m_Layer: 5
-  m_Name: Slider (1)
+  m_Name: SoundSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2391,7 +2394,7 @@ GameObject:
   - component: {fileID: 5060843083329133024}
   - component: {fileID: 1701005717704313556}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: MusicSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
