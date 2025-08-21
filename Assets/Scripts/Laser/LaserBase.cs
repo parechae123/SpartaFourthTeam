@@ -13,6 +13,7 @@ public abstract class LaserBase : MonoBehaviour, IDetectAction, ILaserCollide
     {
         if (line == null) line = GetComponent<LineRenderer>();
         searchLayer += 1 << LayerMask.NameToLayer("LaserObjects");
+        searchLayer += 1 << LayerMask.NameToLayer("MapObjects");
         TempLaserDict.GetInstance.RegistLaserOBJ(GetComponent<Collider>(), this);
     }
     public virtual void OnDetect()
@@ -21,11 +22,11 @@ public abstract class LaserBase : MonoBehaviour, IDetectAction, ILaserCollide
     }
     public abstract void OnLaserCollide(bool isLaserContact);
 
-    public void ChildLaserOff()
+    public virtual void ChildLaserOff()
     {
         if(line != null)OnLaserRendering(0f);
-
-        if(currCollide != null && currCollide != this) currCollide.ChildLaserOff();
+        
+        if(currCollide != null && currCollide != this) currCollide.OnLaserCollide(false);
         currCollide = null;
     }
     public virtual void OnLaserRendering(float dist)

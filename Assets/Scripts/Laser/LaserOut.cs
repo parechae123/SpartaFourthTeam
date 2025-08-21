@@ -31,7 +31,10 @@ public class LaserOut : LaserBase
             OnLaserRendering(3000f);
         }
     }
-
+    public override void ChildLaserOff()
+    {
+        currCollide = null;
+    }
     // Update is called once per frame
     void Update()
     {
