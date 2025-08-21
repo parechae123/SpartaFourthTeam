@@ -21,14 +21,14 @@ public class AudioManager : MonoBehaviour
         if (bgmSource == null)
             bgmSource = gameObject.AddComponent<AudioSource>();
 
+        bgmSource.volume = Volume;
         bgmSource.loop = true;
     }
 
     public void PlayBGM(AudioClip clip)
     {
-        if (bgmSource.clip == clip && bgmSource.isPlaying)
-            return;
-
+        if (!clip) return;
+        if (bgmSource.clip == clip && bgmSource.isPlaying) return;
         bgmSource.clip = clip;
         bgmSource.Play();
     }
@@ -41,6 +41,11 @@ public class AudioManager : MonoBehaviour
 
     public void SetVolume(float value)
     {
-        bgmSource.volume = Mathf.Clamp01(value);
+        Volume = Mathf.Clamp01(value);
+        bgmSource.volume = Volume;
+    }
+    public float GetVolume()
+    {
+        return bgmSource ? bgmSource.volume : Volume;
     }
 }

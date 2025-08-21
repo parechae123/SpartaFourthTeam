@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class StartSceneUI : MonoBehaviour
 {
     [Header("Main Buttons")]
@@ -19,13 +18,13 @@ public class StartSceneUI : MonoBehaviour
     [SerializeField] Slider soundSlider;
     [SerializeField] GameObject panelStage;
 
-    [Tooltip("스테이지 씬 이름")]
+    [Tooltip("스테이지 씬 이름 (index: 각 스테이지 버튼)")]
     [SerializeField] string[] stageSceneNames;
 
-    void OnEnable()  => SceneManager.sceneLoaded += OnSceneLoaded;
-    void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
+    SlideEffect transition;
+    RectTransform panelStageRT;
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    void Awake()
     {
         if (!panelStage)
         {
@@ -37,22 +36,116 @@ public class StartSceneUI : MonoBehaviour
             }
         }
 
-        if (UIManager.Instance)
+        transition = FindObjectOfType<SlideEffect>();
+        panelStageRT = panelStage ? panelStage.GetComponent<RectTransform>() : null;
+
+        if (panelStage) panelStage.SetActive(false);
+    }
+
+    void OnEnable()
+    {
+        if (startButton)
         {
-            UIManager.Instance.BindStartMenu(
-                startButton,
-                exitButton,
-                stageMenuButton,
-                closeButton,
-                soundSlider,
-                panelStage,
-                new[] { stageButton1, stageButton2, stageButton3 },
-                stageSceneNames
-            );
+            startButton.onClick.RemoveAllListeners();
+            startButton.onClick.AddListener(OnStartClicked);
         }
-        else
+
+        if (exitButton)
         {
-            Debug.LogWarning("⚠ UIManager 인스턴스를 찾지 못했습니다.");
+            exitButton.onClick.RemoveAllListeners();
+            exitButton.onClick.AddListener(OnExitClicked);
         }
+
+        if (stageMenuButton)
+        {
+            stageMenuButton.onClick.RemoveAllListeners();
+            stageMenuButton.onClick.AddListener(OnStageMenuClicked);
+        }
+
+        if (closeButton)
+        {
+            closeButton.onClick.RemoveAllListeners();
+            closeButton.onClick.AddListener(OnCloseClicked);
+        }
+
+        WireStageButton(stageButton1, 0);
+        WireStageButton(stageButton2, 1);
+        WireStageButton(stageButton3, 2);
+
+        if (soundSlider)
+        {
+            soundSlider.onValueChanged.RemoveAllListeners();
+
+            if (UIManager.Instance != null)
+                soundSlider.value = AudioManager.Instance.GetVolume();
+
+            soundSlider.onValueChanged.AddListener(OnSoundChanged);
+        }
+    }
+
+    void OnDisable()
+    {
+        if (startButton)      startButton.onClick.RemoveAllListeners();
+        if (exitButton)       exitButton.onClick.RemoveAllListeners();
+        if (stageMenuButton)  stageMenuButton.onClick.RemoveAllListeners();
+        if (closeButton)      closeButton.onClick.RemoveAllListeners();
+
+        if (stageButton1)     stageButton1.onClick.RemoveAllListeners();
+        if (stageButton2)     stageButton2.onClick.RemoveAllListeners();
+        if (stageButton3)     stageButton3.onClick.RemoveAllListeners();
+
+        if (soundSlider)      soundSlider.onValueChanged.RemoveAllListeners();
+    }
+
+    public void OnStartClicked()
+    {
+        LoadStageByIndex(0);
+    }
+
+    public void OnExitClicked()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
+    public void OnStageMenuClicked()
+    {
+        transition.Slide(panelStageRT, SlideEffect.Dir.Right, 0.6f, show: true);
+    }
+
+    public void OnCloseClicked()
+    {
+        transition.Slide(panelStageRT, SlideEffect.Dir.Left, 0.6f, show: false);
+    }
+
+    void OnSoundChanged(float v)
+    {
+        AudioManager.Instance.SetVolume(v);
+    }
+
+    public void OnStageClicked(int index)
+    {
+        LoadStageByIndex(index);
+    }
+
+    void WireStageButton(Button btn, int index)
+    {
+        if (!btn) return;
+        btn.onClick.RemoveAllListeners();
+        btn.onClick.AddListener(() => OnStageClicked(index));
+    }
+
+    void LoadStageByIndex(int index)
+    {
+        AudioManager.Instance.StopBGM();
+        if (stageSceneNames == null || index < 0 || index >= stageSceneNames.Length || string.IsNullOrEmpty(stageSceneNames[index]))
+        {
+            Debug.LogWarning($"Scene{index + 1} 범위초과");
+            return;
+        }
+        SceneManager.LoadScene(stageSceneNames[index]);
     }
 }
