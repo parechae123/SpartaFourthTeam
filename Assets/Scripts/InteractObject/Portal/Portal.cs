@@ -28,5 +28,18 @@ public class Portal : MonoBehaviour
         isPortalActive = false;
     }
 
+    public void RefreshPortal()
+    {
+        isPortalActive = true;
+        if (GetOtherPortal.isPortalActive)
+        {
+            Collider othercollider = otherPortal.portalCollider.GetComponent<Collider>();
+            othercollider.enabled = false;
+            othercollider.enabled = true;
+        }
+        Collider thiscollider = portalCollider.GetComponent<Collider>();
+        thiscollider.enabled = false;
+        thiscollider.enabled = true;
 
+    }
 }
