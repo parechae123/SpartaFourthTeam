@@ -14,17 +14,15 @@ public class SimpleTurretController : MonoBehaviour
     [SerializeField] private string shootParam = "Shoot"; 
 
     private float nextFireTime; 
-    private bool stopped;
 
     private void OnEnable()
     {
-        stopped = false;
         nextFireTime = Time.time + (1f / Mathf.Max(0.01f, fireRate));
     }
 
     private void Update()
     {
-        if (stopped || bulletSpawn == null || bulletPool == null) return;
+        if (bulletSpawn == null || bulletPool == null) return;
 
         if (Time.time >= nextFireTime)
         {
@@ -52,11 +50,4 @@ public class SimpleTurretController : MonoBehaviour
         bullet.Fire(bulletSpawn.position, bulletSpawn.forward, bulletSpeed, ignored: transform);
     }
 
-    // 충돌 시 정지(원하면 유지)
-    private void OnCollisionEnter(Collision collision)
-    {
-        stopped = true;
-        if (turretAnimator && !string.IsNullOrEmpty(shootParam))
-            turretAnimator.ResetTrigger(shootParam);
-    }
 }

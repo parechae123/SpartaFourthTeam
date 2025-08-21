@@ -97,15 +97,4 @@ public class TurretController : MonoBehaviour
     {
         target = t;
     }
-    //충돌시 작동 중지
-    void OnCollisionEnter(Collision collision)
-    {
-        target = null;
-        nextFireTime = float.MaxValue;
-
-        if (turretAnimator != null && !string.IsNullOrEmpty(shootParam))
-        {
-            turretAnimator.ResetTrigger(shootParam);
-        }
-    }
 }
