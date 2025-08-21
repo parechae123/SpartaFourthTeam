@@ -57,6 +57,7 @@ public class ButtonManager : MonoBehaviour
     }
     public void NextStage()
     {
+        Time.timeScale = 1f;
         int currentIndex = SceneManager.GetActiveScene().buildIndex;
         int nextStageIndex = currentIndex + 1;
 
