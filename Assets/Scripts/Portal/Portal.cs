@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class Portal : MonoBehaviour
     public Portal SetOtherPortal { set { otherPortal = value; } }
     public bool isPortalActive;
     public PortalCollider portalCollider;
+
+    public const float PORTALMINDISTANCE = 5.0f;
 
     private void Awake()
     {
