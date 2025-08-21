@@ -84,19 +84,26 @@ public class Save : MonoBehaviour
         string json = File.ReadAllText(path);
         SaveData saveData = JsonUtility.FromJson<SaveData>(json);
 
-        // 플레이어 위치 및 HP 적용
+        if (playerTransform == null)
+        {
+            Debug.LogError("playerTransform이 할당되어 있지 않습니다!");
+            return;  // 널일 경우 더 이상 실행하지 않음
+        }
+        // 플레이어 위치 적용
         playerTransform.position = new Vector3(
             saveData.playerData.playerPositionX,
             saveData.playerData.playerPositionY,
             saveData.playerData.playerPositionZ
         );
+      
 
-        // 움직이는 아이템 위치 적용
+
+        //움직이는 아이템 위치 적용
         for (int i = 0; i < grabbedItems.Count && i < saveData.grabbedItems.Count; i++)
         {
             grabbedItems[i].transform.position = new Vector3(
                 saveData.grabbedItems[i].itemPositionX,
-                saveData.grabbedItems[i].itemPositionY,
+               saveData.grabbedItems[i].itemPositionY,
                 saveData.grabbedItems[i].itemPositionZ
             );
         }

@@ -5,6 +5,7 @@ public class StartSceneUI : MonoBehaviour
 {
     [Header("Main Buttons")]
     [SerializeField] Button startButton;
+    [SerializeField] Button loadButton;
     [SerializeField] Button exitButton;
     [SerializeField] Button stageMenuButton;
 
@@ -52,6 +53,12 @@ public class StartSceneUI : MonoBehaviour
             startButton.onClick.AddListener(OnStartClicked);
         }
 
+        if (loadButton)
+        {
+            loadButton.onClick.RemoveAllListeners();
+            loadButton.onClick.AddListener(OnLoadClicked);
+        }
+
         if (exitButton)
         {
             exitButton.onClick.RemoveAllListeners();
@@ -88,6 +95,7 @@ public class StartSceneUI : MonoBehaviour
     void OnDisable()
     {
         if (startButton)      startButton.onClick.RemoveAllListeners();
+        if (loadButton)       loadButton.onClick.RemoveAllListeners();
         if (exitButton)       exitButton.onClick.RemoveAllListeners();
         if (stageMenuButton)  stageMenuButton.onClick.RemoveAllListeners();
         if (closeButton)      closeButton.onClick.RemoveAllListeners();
@@ -102,6 +110,18 @@ public class StartSceneUI : MonoBehaviour
     public void OnStartClicked()
     {
         LoadStageByIndex(0);
+    }
+
+    public void OnLoadClicked()
+    {
+        Save save = new Save();
+        save.LoadGame();
+        if (GameManager.Instance.CurrentStageIndex < 0)
+        {
+            Debug.LogWarning("현재 스테이지 인덱스가 유효하지 않습니다.");
+            return;
+        }
+        LoadStageByIndex(GameManager.Instance.CurrentStageIndex);
     }
 
     public void OnExitClicked()
