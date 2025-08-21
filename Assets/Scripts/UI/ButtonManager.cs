@@ -55,5 +55,12 @@ public class ButtonManager : MonoBehaviour
         Debug.Log("Restarting Game");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    //public void NextStage()
+    //{
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    //    GameManager.Instance.CurrentStageIndex = nextStageIndex;
 
+    //    // ¥Ÿ¿Ω æ¿ ∑ŒµÂ
+    //    SceneManager.LoadScene(nextStageIndex);
+    //}
 }
