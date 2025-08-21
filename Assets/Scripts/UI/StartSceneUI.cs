@@ -28,6 +28,7 @@ public class StartSceneUI : MonoBehaviour
 
     void Awake()
     {
+
         if (!panelStage)
         {
             var canvas = GameObject.FindWithTag("Canvas");
@@ -46,6 +47,7 @@ public class StartSceneUI : MonoBehaviour
 
     void OnEnable()
     {
+        UpdateStageButtons();
         if (startButton)
         {
             startButton.onClick.RemoveAllListeners();
@@ -151,6 +153,7 @@ public class StartSceneUI : MonoBehaviour
 
     void LoadStageByIndex(int index)
     {
+        GameManager.Instance.CurrentStageIndex = index;
         AudioManager.Instance.StopBGM();
         if (stageSceneNames == null || index < 0 || index >= stageSceneNames.Length || string.IsNullOrEmpty(stageSceneNames[index]))
         {
@@ -158,5 +161,12 @@ public class StartSceneUI : MonoBehaviour
             return;
         }
         SceneManager.LoadScene(stageSceneNames[index]);
+    }
+
+    void UpdateStageButtons()
+    {
+        stageButton1.interactable = true;
+        stageButton2.interactable = GameManager.Instance.StageClearStatus.Count > 0 && GameManager.Instance.StageClearStatus[0];
+        stageButton3.interactable = GameManager.Instance.StageClearStatus.Count > 1 && GameManager.Instance.StageClearStatus[1];
     }
 }
