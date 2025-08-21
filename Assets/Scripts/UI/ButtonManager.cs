@@ -51,6 +51,7 @@ public class ButtonManager : MonoBehaviour
     }
     public void RestartGame()
     {
+        Time.timeScale = 1f;
         Debug.Log("Restarting Game");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
