@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1452d0649803c6f4e87b65feb0309d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panel: {fileID: 0}
+  Panel: {fileID: 7881747695787054215}
   saveManager: {fileID: 0}
 --- !u!1 &2972245870976115135
 GameObject:
@@ -2751,7 +2751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 7881747695787054215}
-  saveManager: {fileID: 0}
+  saveManager: {fileID: 4184470334783767030}
 --- !u!1 &9009941974892764065
 GameObject:
   m_ObjectHideFlags: 0
