@@ -245,8 +245,7 @@ public class PlayerController : MonoBehaviour, IMoveable
     //Shoot Portal At position
     public void PortalAction(int portalnumber)
     {
-        if (Physics.Raycast(transform.position + Vector3.up * 2, 
-            transform.forward + Vector3.up * (cameraXRotation * Mathf.Deg2Rad),
+        if (Physics.Raycast(cam.ScreenPointToRay(midPos),
             out RaycastHit hit, PORTALMAXDISTANCE, groundLayerMask))
         {
             if (hit.transform.TryGetComponent<PortalWall>(out PortalWall portalwall))
