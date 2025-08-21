@@ -289,7 +289,7 @@ MonoBehaviour:
   bulletSpawn: {fileID: 7529531466119253062}
   bulletPool: {fileID: 193488205945263614}
   turnSpeedDeg: 360
-  fireRate: 5
+  fireRate: 1
   bulletSpeed: 24
   turretAnimator: {fileID: 0}
   shootParam: Shoot
