@@ -138,7 +138,7 @@ Bullet.cs : Fire()로 총알의 초기 위치·방향·속도를 설정 충돌 �
 
 ### 8. 시연 영상
 
-
+- 게임의 실제 플레이 영상은 다음 링크에서 확인하실 수 있습니다: [시연 영상 보러 가기](https://www.youtube.com/watch?v=Y4XN28tl7Ig&t=2s&ab_channel=%ED%97%88%EC%9C%A4)
 
 ---------
 
