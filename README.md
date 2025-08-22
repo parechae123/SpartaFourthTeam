@@ -83,7 +83,7 @@
 
 필요한 인터페이스의 경우 개발 시작전 제작을 한 후, 이를 각자 활용하는 방향으로 진행
 
-** 리지드 바디**:
+**리지드 바디**:
  플레이어 이동을 MovePosition으로 이동시켜 어느 방향으로 force가 가해져도 이동이 가능하도록 로직 변경
  -   MovingPlatform의 경우 Physics Material을 활용하여 플레이어가 위에 있어도 이동이 되지만, 미끄러지지 않게 설정MovingPlatform위에 있는 Player가 Bullet에 맞을 경우를 대비하여, Bullet의 경우 넉백의 ForceMode를 VelocityChange로 설정하여 날림
     -   점프의 경우, raycast를 활용하여 바닥 레이어가 map인지 확인 후 empluse를 활용하여 점프
