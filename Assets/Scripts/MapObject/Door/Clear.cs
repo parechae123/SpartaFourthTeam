@@ -10,7 +10,7 @@ public class Clear : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Clear Triggered");
-            SaveManager saveManager = FindObjectOfType<SaveManager>();
+            SaveManager saveManager = GameObject.FindObjectOfType<SaveManager>();
             if (saveManager != null)
             {
                 Debug.Log("클리어 스테이지 저장완료");
