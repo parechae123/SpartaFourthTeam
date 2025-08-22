@@ -121,15 +121,15 @@ Bullet.cs : Fire()로 총알의 초기 위치·방향·속도를 설정 충돌 �
 
 ### 7. 팀원 소개 🧑‍💻
 
--   **[팀장 문장원]**: Portal부분, Player부분 제작, 프로젝트 총괄담당
+-   **[팀장 문장원](https://github.com/NineTheDivine)**: Portal부분, Player부분 제작, 프로젝트 총괄담당
     
--   **[팀원 허윤]**: laser부분, 퍼즐 디자인, StageThird 제작
+-   **[팀원 허윤](https://github.com/parechae123)**: laser부분, 퍼즐 디자인, StageThird 제작
     
--   **[팀원 김영식]**: Start, Select, Turret부분, Sound부분, StageTwo 제작
+-   **[팀원 김영식](https://github.com/Kazin7)**: Start, Select, Turret부분, Sound부분, StageTwo 제작
 
--  **[팀원 김우민]**: Save, Clear, Pause, PressurePlate, ClearDoor 제작
+-  **[팀원 김우민](https://github.com/woomin0011)**: Save, Clear, Pause, PressurePlate, ClearDoor 제작
 
--  **[팀원 김성민]**: JumpPad, MovingPlatfrom, StageOne 제작
+-  **[팀원 김성민](https://github.com/Kseongmin1107)**: JumpPad, MovingPlatfrom, StageOne 제작
 
 
     
@@ -203,6 +203,7 @@ rigidbody.MovePosition 의 경우 상대 위치로부터 얼마나 움직이는 
 
 참조 링크 : [https://docs.unity3d.com/ScriptReference/Rigidbody-position.html](https://docs.unity3d.com/ScriptReference/Rigidbody-position.html)        
 
+------------------------
 
 # 상황
 
@@ -277,6 +278,8 @@ rigidbody.MovePosition 의 경우 상대 위치로부터 얼마나 움직이는 
 
 -   다음 노드로 명령을 호출할때 무한루프 방지를 위한 제약이 필요하다
 
+------------------------
+
 RenderTexture 출력 시 의도한 바 보다 어둡고 후처리가 적용되지 않았던 문제
 
 ![](https://velog.velcdn.com/images/dev_heoyoon/post/94b508b6-b6fe-44c5-ba51-c5e1adfb9d10/image.png)
@@ -324,6 +327,7 @@ RenderTexture 출력 시 의도한 바 보다 어둡고 후처리가 적용되�
 
 <img width="591" height="379" alt="우민트러블" src="https://github.com/user-attachments/assets/c58f2838-0e81-4376-9437-b6dcb7178990" />
 
+------------------------
 
 문제발견
 
@@ -342,31 +346,38 @@ RenderTexture 출력 시 의도한 바 보다 어둡고 후처리가 적용되�
 원인: 충돌 해결 과정에서 잘못된 선택으로 인한 문제발생 
 해결: cmd창에서 git reset --hard <정상 커밋해시> git push --force 를 통해 정상 커밋으로 이동하여 다시작업
 
+------------------------
 증상: 게임 시작시 터렛이 사이즈가 감소하는 현상 
 원인: Animator가 루트에 붙어 루트의 position rotation scale을 건드는 것이 원인 
 해결 : 애니메이터를 하위로 설정하여 해결
 
+------------------------
 증상: 다른 씬 갔다 돌아오면 BGM이 재생되지 않음. 
 원인: 씬별로 BGM을 다시 틀어주는 로직이 없음. 
 해결: SceneBGM 컴포넌트 도입. 각 씬에 SceneBGM를 배치하고 OnEnable()에서 AudioManager.PlayBGM(bgmClip) 호출.
 
+------------------------
 증상: 이동 플랫폼 위 플레이어가 총알을 맞아도 거의 움직이지 않음
 원인: 플랫폼의 Physics Material의 마찰이 너무 커서 맞아도 날라가지 않는 현상 
 해결: 총알의 넉백 판정을ForceMode.Impulse => ForceMode.VelocityChange로 변경
- 
+
+ ------------------------
 증상: 다른 씬에서 버튼 관련해서 사용하는데 문제가 발생
 원인 : UIManager가 버튼/슬라이더 바인딩까지 담당하여 발생하는 문제
 해결: UIManager의 역할을 StartSceneUI로 이식하여 바인딩/동작 담당하도록 처리
 
+------------------------
 증상: 큐브 스폰 위치가 SpawnPoint와 다르게 적용되어 이상한 곳에 스폰되는 현상 
 원인 : 자식으로 붙이니 위치가 달라지는 것이 원인 
 해결: 자식으로 두되 월드위치 유지하는 방식(SetParent(cubeSpawnPoint, true))으로 해결
 
+------------------------
 
 증상: 총알이 벽을 뚫고 나가고 그 총알을 맞은 플레이어도 벽을 뚫고 날아가는 현상 
 원인: 로직에는 문제가 없었지만 벽이 너무 얇고, 총알의 속도가 빨라서 발생 
 해결: 벽의 두께를 늘리는 방식(0.1 ⇒ 5)으로 해결
 
+------------------------
 증상: 스크립트가 없다는 엄청난 오류메시지 발생 
 원인: 에셋,스크립트등을 안쓰는 부분을 전부 정리하는 과정에서 스크립트의 위치가 변경되면서 인식하지 못하는 것이 원인 
 해결: Reimport를 통해 해당 스크립트를 인식하도록 처리
