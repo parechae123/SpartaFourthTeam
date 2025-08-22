@@ -3678,7 +3678,7 @@ MonoBehaviour:
   isActivated: 0
   layers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
 --- !u!1 &1583512001838625681
 GameObject:
   m_ObjectHideFlags: 0
